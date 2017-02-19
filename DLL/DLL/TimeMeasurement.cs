@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace DLL
 {
-    class TimeMeasurement
+    public class TimeMeasurement
     {
         private long start;
         private long stop;
