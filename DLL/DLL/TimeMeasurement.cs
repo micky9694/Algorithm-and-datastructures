@@ -8,6 +8,9 @@ namespace DLL
 {
     class TimeMeasurement
     {
-        
+        public void SomeFunction()
+        {
+
+        }
     }
 }
