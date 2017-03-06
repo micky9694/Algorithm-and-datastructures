@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DLL
 {
-    class Node<K,T>
+    class Node<K,T> where K:IComparable<K>
     {
         public K Key;
         public T Item;
@@ -26,7 +26,7 @@ namespace DLL
             NextNode = nextNode; 
         }
     }
-    public class LinkedList<K,T>
+    public class LinkedList<K,T> where K:IComparable<K>
     {
         Node<K, T> m_Head;
         public LinkedList()
@@ -38,5 +38,15 @@ namespace DLL
             Node<K, T> newNode = new Node<K, T>(key,item,m_Head.NextNode);
             m_Head.NextNode = newNode;
         }
+
+       /* T Find(K key)
+        {
+            Node<K, T> current = m_Head;
+            while ((current.NextNode != null)&&(current.Key.CompareTo(key) != 0))
+            {
+                current = current.NextNode;
+            }
+            return current.Item;
+        }*/
     }
 }
