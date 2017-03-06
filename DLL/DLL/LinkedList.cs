@@ -38,6 +38,5 @@ namespace DLL
             Node<K, T> newNode = new Node<K, T>(key,item,m_Head.NextNode);
             m_Head.NextNode = newNode;
         }
-
     }
 }
