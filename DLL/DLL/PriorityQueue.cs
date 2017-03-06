@@ -6,15 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DLL
-{
-    public struct Item<T>
+{   /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public struct Item<T>:IComparable<Item<T>>
     {
         public int priority;
         public T element;
-
         public T X
         {
-            get
+            get 
             {
                 return element;
             }
@@ -24,9 +26,22 @@ namespace DLL
                 element = value;
             }
         }
+
+        public int CompareTo(Item<T> other)
+        {
+           if(this.priority < other.priority)
+            {
+                return -1;
+            }
+            else if(this.priority > other.priority)
+            {
+                return 1;
+            } 
+            return 0;
+        }
     }
 
-    class PriorityQueue<T>
+    class PriorityQueue<T> where T:IComparable
     {
         private  Item<T>[] priorityQueue;
         private int size;
