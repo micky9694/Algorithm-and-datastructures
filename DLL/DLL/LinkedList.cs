@@ -6,47 +6,99 @@ using System.Threading.Tasks;
 
 namespace DLL
 {
-    class Node<K,T> where K:IComparable<K>
+    class Node<T> where T : IComparable<T>
     {
-        public K Key;
-        public T Item;
-        public Node<K, T> NextNode;
+        private T Data;
+        private Node<T> Next;
 
         public Node()
         {
-            Key = default(K);
-            Item = default(T);
-            NextNode = null;
+            Data = default(T);
+            Next = null;
         }
 
-        public Node(K key, T item, Node<K,T> nextNode)
+        public Node(T Data)
         {
-            Key = key;
-            Item = item;
-            NextNode = nextNode; 
+            this.Data = Data;
+            Next = null;
+        }
+
+        public Node<T> getNext()
+        {
+            return Next;
+        }
+
+        public void setNext(Node<T> next)
+        {
+            Next = next;
+        }
+
+        public void addData(T Data)
+        {
+            this.Data = Data;
+        }
+
+        public T getData()
+        {
+            return Data;
         }
     }
-    public class LinkedList<K,T> where K:IComparable<K>
+
+
+    public class LinkedList<T> where T:IComparable<T>
     {
-        Node<K, T> m_Head;
+        private Node<T> m_header;
         public LinkedList()
         {
-            m_Head = new Node<K, T>();
+            m_header = new Node<T>();
         }
-        public void AddHead(K key,T item)
+        public LinkedList(T item)
         {
-            Node<K, T> newNode = new Node<K, T>(key,item,m_Head.NextNode);
-            m_Head.NextNode = newNode;
+            m_header = new Node<T>(item);
         }
 
-       /* T Find(K key)
+        private Node<T> Find(T Item)
         {
-            Node<K, T> current = m_Head;
-            while ((current.NextNode != null)&&(current.Key.CompareTo(key) != 0))
+            Node<T> current = new Node<T>();
+            current = m_header;
+            while((!current.getData().Equals(Item))&&(!current.getNext().Equals(null)))
             {
-                current = current.NextNode;
+                current = current.getNext();
             }
-            return current.Item;
-        }*/
+            if(!current.getData().Equals(Item))
+            {
+                current = null;
+            }
+            return current;
+        }
+
+        private Node<T> FindPrevious(T Item)
+        {
+            Node<T> current = m_header;
+            while(!(current.getNext().Equals(null))&&(!current.getNext().getData().Equals(Item)))
+            {
+                current = current.getNext();
+            }
+            return current;
+        }
+
+        public void Insert(T newItem, T after)
+        {
+            Node<T> current = new Node<T>();
+            Node<T> newNode = new Node<T>(after);
+
+            current = Find(after);
+            newNode.setNext(current.getNext());
+            current.setNext(newNode);
+        }
+
+        public void Remove(T Item)
+        {
+            Node <T> p = FindPrevious(Item);
+            if(!(p.getNext().Equals(null)))
+            {
+                p.setNext(p.getNext().getNext());
+            }
+        }
     }
 }
