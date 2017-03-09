@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinarySearch.cs" />
+    <Compile Include="CircularList.cs" />
     <Compile Include="DoublyLinkedList.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="MinMax.cs" />
