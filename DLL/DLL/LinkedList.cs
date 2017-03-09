@@ -82,10 +82,23 @@ namespace DLL
             return current;
         }
 
+        public void addToEnd(T newItem)
+        {
+            Node<T> current = new Node<T>();
+            Node<T> newNode = new Node<T>(newItem);
+            
+            while(!current.getNext().Equals(null))
+            {
+                current = current.getNext();
+            }
+
+            current.setNext(newNode);
+        }
+
         public void Insert(T newItem, T after)
         {
             Node<T> current = new Node<T>();
-            Node<T> newNode = new Node<T>(after);
+            Node<T> newNode = new Node<T>(newItem);
 
             current = Find(after);
             newNode.setNext(current.getNext());
@@ -98,6 +111,17 @@ namespace DLL
             if(!(p.getNext().Equals(null)))
             {
                 p.setNext(p.getNext().getNext());
+            }
+        }
+
+        public void PrintList()
+        {
+            Node<T> current = new Node<T>();
+            current = m_header;
+            while(!(current.getNext().Equals(null)))
+            {
+                Console.WriteLine(current.getNext().getData());
+                current.setNext(current.getNext());
             }
         }
     }
