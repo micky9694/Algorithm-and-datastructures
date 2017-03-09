@@ -14,7 +14,7 @@ namespace TestConsole
             list.Add("Micky");
 
             list.Insert(1, "daar");
-            list.Remove(1);
+            //list.Remove(1);
 
             foreach (string item in list)
             {

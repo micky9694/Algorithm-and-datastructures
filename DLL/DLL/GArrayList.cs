@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DLL
 {
@@ -18,7 +14,14 @@ namespace DLL
 
         public T Get(int position)
         {
-            return list[position];
+            try
+            {
+                return list[position];
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         public object Add(T item)
