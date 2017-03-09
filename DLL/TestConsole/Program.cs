@@ -11,7 +11,7 @@ namespace TestConsole
             list.Add("Hoi");
             list.Add("ik");
             list.Add("ben");
-            list.Add("Micky");s
+            list.Add("Micky");
 
             list.Insert(1, "daar");
             list.Remove(1);
