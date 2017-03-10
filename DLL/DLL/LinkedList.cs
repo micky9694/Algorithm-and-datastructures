@@ -48,20 +48,22 @@ namespace DLL
     public class LinkedList<T> where T:IComparable<T>
     {
         private Node<T> m_header;
+        private Node<T> current;
         public LinkedList()
         {
             m_header = new Node<T>();
+            current = new Node<T>();
         }
         public LinkedList(T item)
         {
             m_header = new Node<T>(item);
+            current = new Node<T>();
         }
 
         private Node<T> Find(T Item)
         {
-            Node<T> current = new Node<T>();
             current = m_header;
-            while((!current.getData().Equals(Item))&&(!current.getNext().Equals(null)))
+            while((!current.getData().Equals(Item))&&(!(current.getNext() ==null)))
             {
                 current = current.getNext();
             }
@@ -75,7 +77,7 @@ namespace DLL
         private Node<T> FindPrevious(T Item)
         {
             Node<T> current = m_header;
-            while(!(current.getNext().Equals(null))&&(!current.getNext().getData().Equals(Item)))
+            while((!(current.getNext() == null))&&(!current.getNext().getData().Equals(Item)))
             {
                 current = current.getNext();
             }
@@ -88,7 +90,7 @@ namespace DLL
             current = m_header;
             Node<T> newNode = new Node<T>(newItem);
             
-            while(!current.getNext().Equals(null))
+            while(!(current.getNext() == null))
             {
                 current = current.getNext();
             }
@@ -109,7 +111,7 @@ namespace DLL
         public void Remove(T Item)
         {
             Node <T> p = FindPrevious(Item);
-            if(!(p.getNext().Equals(null)))
+            if(!(p.getNext() == null))
             {
                 p.setNext(p.getNext().getNext());
             }
@@ -119,10 +121,10 @@ namespace DLL
         {
             Node<T> current = new Node<T>();
             current = m_header;
-            while(!(current.getNext().Equals(null)))
+            while(!(current.getNext() == null))
             {
                 Console.WriteLine(current.getNext().getData());
-                current.setNext(current.getNext());
+                current =current.getNext();
             }
         }
     }

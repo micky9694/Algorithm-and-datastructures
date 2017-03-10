@@ -8,9 +8,9 @@ namespace DLL
 {
     class DoubleLinkNode<T> where T : IComparable<T>
     {
-        public T Data;
-        public DoubleLinkNode<T> Next;
-        public DoubleLinkNode<T> Prev;
+        private T Data;
+        private DoubleLinkNode<T> Next;
+        private DoubleLinkNode<T> Prev;
 
         public DoubleLinkNode()
         {
@@ -78,7 +78,7 @@ namespace DLL
         private DoubleLinkNode<T> Find(T Item)
         {
             current = m_header;
-            while ((!current.getData().Equals(Item)) && (!current.getNext().Equals(null)))
+            while ((!(current.getData().Equals(Item)) && (!(current.getNext() == null))))
             {
                 current = current.getNext();
             }
@@ -92,7 +92,7 @@ namespace DLL
         private DoubleLinkNode<T> FindLast()
         { 
             current = m_header;
-            while (!(current.getNext().Equals(null)))
+            while (!(current.getNext() == null))
             {
                 current = current.getNext();
             }
@@ -104,7 +104,7 @@ namespace DLL
             current = m_header;
             newNode = new DoubleLinkNode<T>(newItem);
 
-            while (!(current.Next == null))
+            while (!(current.getNext() == null))
             {
                 current = current.getNext();
             }
@@ -126,7 +126,7 @@ namespace DLL
         public void Remove(T Item)
         {
             DoubleLinkNode<T> p = Find(Item);
-            if (!(p.getNext().Equals(null)))
+            if (!(current.getNext() == null))
             {
                 p.getPrev().setNext(p.getNext());
                 p.getNext().setPrev(p.getPrev());
@@ -138,19 +138,19 @@ namespace DLL
         public void PrintList()
         {
             current = m_header;
-            while (!(current.getNext().Equals(null)))
+            while (!(current.getNext() == null))
             {
-                Console.WriteLine(current.getNext().getData());
-                current.setNext(current.getNext());
+                Console.WriteLine(current.getNext().getData().ToString());
+                current = current.getNext();
             }
         }
 
         public void PrintReverse()
         {
             current = FindLast();
-            while (!(current.getPrev().Equals(null)))
+            while (!(current.getPrev() == null))
             {
-                Console.WriteLine(current.getData());
+                Console.WriteLine(current.getData().ToString());
                 current = current.getPrev();
             }
         }
