@@ -98,16 +98,16 @@ namespace DLL
         public void addToEnd(T newItem)
         {
             DoubleLinkNode<T> current = new DoubleLinkNode<T>();
+            current = m_header;
             DoubleLinkNode<T> newNode = new DoubleLinkNode<T>(newItem);
 
-            while (!current.getNext().Equals(null))
+            while (!(current.getNext().Equals(null)))
             {
                 current = current.getNext();
             }
             
             current.setNext(newNode);
             newNode.setPrev(current);
-
         }
 
         public void Insert(T newItem, T after)

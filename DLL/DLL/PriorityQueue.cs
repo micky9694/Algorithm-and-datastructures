@@ -6,10 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DLL
-{   /// <summary>
-    /// 
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
     public struct Item<T>:IComparable<Item<T>>
     {
         public int priority;
@@ -79,6 +75,15 @@ namespace DLL
         public int sizePriorityQueue()
         {
             return size;
+        }
+
+        public void printPriorityQueue()
+        {
+        Console.WriteLine("The priority queue is:");
+            for (int i = 0; i < size; i++)
+            {
+                Console.Write(priorityQueue[i]);
+            }
         }
     }
 }

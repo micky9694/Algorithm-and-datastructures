@@ -85,6 +85,7 @@ namespace DLL
         public void addToEnd(T newItem)
         {
             Node<T> current = new Node<T>();
+            current = m_header;
             Node<T> newNode = new Node<T>(newItem);
             
             while(!current.getNext().Equals(null))
