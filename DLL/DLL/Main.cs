@@ -17,6 +17,7 @@ namespace DLL
             d.addToEnd(4);
             d.PrintList();
             Console.ReadKey();
+            Console.ReadKey();
         }
     }
 }
