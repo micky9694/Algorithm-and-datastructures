@@ -108,7 +108,6 @@ namespace DLL
             
             current.setNext(newNode);
             newNode.setPrev(current);
-
         }
 
         public void Insert(T newItem, T after)
