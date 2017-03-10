@@ -44,5 +44,15 @@ namespace DLL
         {
             return size;
         }
+
+        //Printing the stack
+        public void printStack()
+        {
+            Console.WriteLine("The stack is:");
+            for (int i = 0; i < size; i++)
+            {
+                Console.Write(stack[i]);
+            }
+        }
     }
 }

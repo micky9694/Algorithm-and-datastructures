@@ -44,5 +44,15 @@ namespace DLL
         {
             return size;
         }
+
+        //Printing the queue
+        public void printQueue()
+        {
+            Console.WriteLine("The queue is:");
+            for (int i = 0; i < size; i++)
+            {
+                Console.Write(queue[i]);
+            }
+        }
     }
 }

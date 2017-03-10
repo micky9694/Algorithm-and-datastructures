@@ -46,11 +46,14 @@ namespace DLL
             }
 
         }
-
         /// <summary>
         ///  This function is used for getting the array from the main program
         ///  Here is calculated the size of the array and passed forward to the function that does all the work Search
         /// </summary>
+        /// <typeparam name="T">Generic type</typeparam>
+        /// <param name="array">The array gived by the user needs to be already sorted</param>
+        /// <param name="element">The element to be found</param>
+        /// <returns></returns>
 
         public Boolean binarySearch<T>(T[] array, T element) where T : IComparable
         {
