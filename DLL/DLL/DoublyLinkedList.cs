@@ -100,7 +100,7 @@ namespace DLL
             DoubleLinkNode<T> current = new DoubleLinkNode<T>();
             DoubleLinkNode<T> newNode = new DoubleLinkNode<T>(newItem);
 
-            while (!current.getNext().Equals(null))
+            while (!(current.getNext().Equals(null)))
             {
                 current = current.getNext();
             }
