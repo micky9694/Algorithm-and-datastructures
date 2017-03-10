@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DLL
+namespace DLL { 
     public struct Item<T>:IComparable<Item<T>>
     {
         public int priority;
