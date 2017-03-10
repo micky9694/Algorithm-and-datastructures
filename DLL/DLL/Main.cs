@@ -18,6 +18,15 @@ namespace DLL
             d.PrintList();
             Console.ReadKey();
             Console.ReadKey();
+            Console.ReadKey();
+            Console.ReadKey();
+            Console.ReadKey();
+            Console.ReadKey();
+            Console.ReadKey();
+            Console.ReadKey();
+            Console.ReadKey();
+            Console.ReadKey();
+            Console.ReadKey();
         }
     }
 }
