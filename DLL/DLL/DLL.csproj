@@ -46,8 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinarySearch.cs" />
+    <Compile Include="bubbleSort.cs" />
     <Compile Include="CircularList.cs" />
     <Compile Include="DoublyLinkedList.cs" />
+    <Compile Include="insertionSort.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="Main Form.cs">
       <SubType>Form</SubType>
@@ -62,6 +64,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queue.cs" />
     <Compile Include="SequentialSearch.cs" />
+    <Compile Include="smartBubbleSort.cs" />
     <Compile Include="Stack.cs" />
     <Compile Include="TimeMeasurement.cs" />
   </ItemGroup>
