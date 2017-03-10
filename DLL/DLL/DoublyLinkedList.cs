@@ -8,9 +8,9 @@ namespace DLL
 {
     class DoubleLinkNode<T> where T : IComparable<T>
     {
-        private T Data;
-        private DoubleLinkNode<T> Next;
-        private DoubleLinkNode<T> Prev;
+        public T Data;
+        public DoubleLinkNode<T> Next;
+        public DoubleLinkNode<T> Prev;
 
         public DoubleLinkNode()
         {
@@ -60,18 +60,23 @@ namespace DLL
     public class DoublyLinkedList<T> where T : IComparable<T>
     {
         private DoubleLinkNode<T> m_header;
+        private DoubleLinkNode<T> current;
+        private DoubleLinkNode<T> newNode;
         public DoublyLinkedList()
         {
             m_header = new DoubleLinkNode<T>();
+            current = new DoubleLinkNode<T>();
+            newNode = new DoubleLinkNode<T>();
         }
         public DoublyLinkedList(T item)
         {
             m_header = new DoubleLinkNode<T>(item);
+            current = new DoubleLinkNode<T>();
+            newNode = new DoubleLinkNode<T>();
         }
 
         private DoubleLinkNode<T> Find(T Item)
         {
-            DoubleLinkNode<T> current = new DoubleLinkNode<T>();
             current = m_header;
             while ((!current.getData().Equals(Item)) && (!current.getNext().Equals(null)))
             {
@@ -85,8 +90,7 @@ namespace DLL
         }
 
         private DoubleLinkNode<T> FindLast()
-        {
-            DoubleLinkNode<T> current = new DoubleLinkNode<T>();
+        { 
             current = m_header;
             while (!(current.getNext().Equals(null)))
             {
@@ -97,11 +101,10 @@ namespace DLL
 
         public void addToEnd(T newItem)
         {
-            DoubleLinkNode<T> current = new DoubleLinkNode<T>();
             current = m_header;
-            DoubleLinkNode<T> newNode = new DoubleLinkNode<T>(newItem);
+            newNode = new DoubleLinkNode<T>(newItem);
 
-            while (!(current.getNext().Equals(null)))
+            while (!(current.Next == null))
             {
                 current = current.getNext();
             }
@@ -112,8 +115,7 @@ namespace DLL
 
         public void Insert(T newItem, T after)
         {
-            DoubleLinkNode < T > current = new DoubleLinkNode<T>();
-            DoubleLinkNode<T> newNode = new DoubleLinkNode<T>(newItem);
+            newNode = new DoubleLinkNode<T>(newItem);
 
             current = Find(after);
             newNode.setNext(current.getNext());
@@ -135,7 +137,6 @@ namespace DLL
 
         public void PrintList()
         {
-            DoubleLinkNode<T> current = new DoubleLinkNode<T>();
             current = m_header;
             while (!(current.getNext().Equals(null)))
             {
@@ -146,7 +147,6 @@ namespace DLL
 
         public void PrintReverse()
         {
-            DoubleLinkNode<T> current = new DoubleLinkNode<T>();
             current = FindLast();
             while (!(current.getPrev().Equals(null)))
             {
