@@ -9,31 +9,28 @@ namespace DLL
     class Queue<T>
     {
         //Declaring the necessary variables
-        private T[] queue;
+        private GArrayList<T> queue;
         private int size;
         public Queue()
         {
+            queue = new GArrayList<T>();
             size = 0;
-            queue = new T[size];
         }
 
         //Adding a new element to the end of queue
         public void add(T element)
         {
-            queue[size] = element;
-            size += 1;
+            queue.Add(element);
+            size++;
         }
 
         //Removing the first element of the queue
         public T remove()
         {
-            T element = queue[0];
+            T element = queue.Get(0);
             if (size > 0)
             {
-                for (int i = 1; i < size; i++)
-                {
-                    queue[i - 1] = queue[i];
-                }
+                queue.Remove(0);
                 size -= 1;
             }
             return element;
@@ -51,7 +48,7 @@ namespace DLL
             Console.WriteLine("The queue is:");
             for (int i = 0; i < size; i++)
             {
-                Console.Write(queue[i]);
+                Console.Write(queue.Get(i));
             }
         }
     }

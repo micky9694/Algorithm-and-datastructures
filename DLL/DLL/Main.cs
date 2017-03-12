@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +11,13 @@ namespace DLL
     {
         public static void Main()
         {
-            DoublyLinkedList<int> d = new DoublyLinkedList<int>();
-            d.addToEnd(1);
-            d.addToEnd(2);
-            d.addToEnd(3);
-            d.addToEnd(4);
-            d.PrintList();
+
+            Stack<int> q = new Stack<int>();
+            q.push(1);
+            q.push(2);
+            q.push(3);
+            q.push(4);
+            q.printStack();
             Console.ReadKey();
             Console.ReadKey();
             Console.ReadKey();

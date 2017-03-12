@@ -48,6 +48,7 @@
     <Compile Include="BinarySearch.cs" />
     <Compile Include="bubbleSort.cs" />
     <Compile Include="CircularList.cs" />
+    <Compile Include="Computers.cs" />
     <Compile Include="DoublyLinkedList.cs" />
     <Compile Include="insertionSort.cs" />
     <Compile Include="LinkedList.cs" />

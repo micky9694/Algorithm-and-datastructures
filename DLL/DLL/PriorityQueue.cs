@@ -42,6 +42,7 @@ namespace DLL {
         private  Item<T>[] priorityQueue;
         private int size;
         private Item<T> i;
+        private BubbleSort
         public PriorityQueue()
         {
             size = 0;
@@ -50,7 +51,7 @@ namespace DLL {
 
         public void add(int priority, T element)
         {
-            //Add sort method from Chen's files!
+            
             i = new Item<T>();
             i.priority = priority;
             i.element = element;

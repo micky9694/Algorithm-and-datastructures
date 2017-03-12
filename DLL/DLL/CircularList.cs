@@ -119,7 +119,7 @@ namespace DLL
             }
 
             current.setNext(newNode);
-            newNode.setPrev(current);
+           // newNode.setPrev(current);
 
         }
 
@@ -130,7 +130,7 @@ namespace DLL
 
             current = Find(after);
             newNode.setNext(current.getNext());
-            newNode.setPrev(current);
+          //  newNode.setPrev(current);
             current.setNext(newNode);
         }
 
@@ -139,10 +139,10 @@ namespace DLL
             SingularCircularNode<T> p = Find(Item);
             if (!(p.getNext().Equals(null)))
             {
-                p.getPrev().setNext(p.getNext());
+              /*  p.getPrev().setNext(p.getNext());
                 p.getNext().setPrev(p.getPrev());
                 p.setNext(null);
-                p.setPrev(null);
+                p.setPrev(null);*/
             }
         }
 

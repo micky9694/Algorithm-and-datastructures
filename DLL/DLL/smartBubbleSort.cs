@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DLL
 {
-    class smartBubbleSort
+    class SmartBubbleSort
     {
         /// <summary>
         /// this is doing a smart bubble sort which will sort an array by comparing 
