@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DLL
 {
-    class insertionSort
+    class InsertionSort
     {
         /// <summary>
         /// Insertion sort is a simple sorting algorithm that builds the 

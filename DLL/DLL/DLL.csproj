@@ -50,6 +50,7 @@
     <Compile Include="BucketHashing.cs" />
     <Compile Include="Choco.cs" />
     <Compile Include="CircularList.cs" />
+    <Compile Include="Computers.cs" />
     <Compile Include="DoublyLinkedList.cs" />
     <Compile Include="insertionSort.cs" />
     <Compile Include="LinkedList.cs" />

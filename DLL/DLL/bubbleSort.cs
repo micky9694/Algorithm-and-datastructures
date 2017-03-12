@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DLL
 {
-    class bubbleSort
+    class BubbleSort
     {
         /// <summary>
         /// this is doing a normal bubble sort which will sort an array by comparing 
