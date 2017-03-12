@@ -47,6 +47,8 @@
   <ItemGroup>
     <Compile Include="BinarySearch.cs" />
     <Compile Include="bubbleSort.cs" />
+    <Compile Include="BucketHashing.cs" />
+    <Compile Include="Choco.cs" />
     <Compile Include="CircularList.cs" />
     <Compile Include="DoublyLinkedList.cs" />
     <Compile Include="insertionSort.cs" />

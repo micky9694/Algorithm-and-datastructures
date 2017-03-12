@@ -49,7 +49,7 @@ namespace DLL
         public void printStack()
         {
             Console.WriteLine("The stack is:");
-            for (int i = 0; i < size; i++)
+            for (int i = size-1; i >= 0; i--)
             {
                 Console.Write(stack[i]);
             }
