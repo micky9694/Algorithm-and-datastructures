@@ -35,6 +35,13 @@ namespace DLL
             {
                 Console.Write(c[i].ChocoNumber+" ");
             }
+            PriorityQueue<String> pq = new PriorityQueue<String>();
+            pq.add(10, "Last");
+            pq.add(1, "First");
+            pq.add(4, "Forth");
+            pq.add(3, "Third");
+            pq.add(2, "Second");
+            pq.printPriorityQueue();
             Console.ReadKey();
         }
     }
