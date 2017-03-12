@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DLL
 {
-    class Computer : IComparable<Computer>
+    class Computer : System.IComparable
     {
         private int cores;
         private String brand;
@@ -47,18 +47,18 @@ namespace DLL
                 return brand;
             }
         }
-
-        public int CompareTo(Computer other)
+        
+        public int CompareTo(object obj)
         {
-            if (this.cores < other.cores)
+            if(obj == null)
             {
-                return -1;
+                return 1;
             }
-            else if(this.cores > other.cores)
-                {
-                    return 1;
-                }
-            return 0;
+            Computer other = obj as Computer;
+            if (other != null)
+                return this.cores.CompareTo(other.cores);
+            else
+                throw new ArgumentException("Object is not a Computer");
         }
     }
 }

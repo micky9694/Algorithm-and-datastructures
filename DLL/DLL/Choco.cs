@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DLL
 {
-    class Choco: IComparable<Choco>
+    class Choco: IComparable
     {
         private string studentName;
         private int numberChocolates;
@@ -27,18 +27,18 @@ namespace DLL
             set { this.numberChocolates = value; }            
         }
 
-        public int CompareTo(Choco other)
+        public int CompareTo(object obj)
         {
-            compareTo = 0;
-            if (this.numberChocolates < other.numberChocolates)
+            if(obj == null)
             {
-                compareTo = -1;
+                return 1;
             }
-            else if (this.numberChocolates > other.numberChocolates)
-            {
-                compareTo = 1;
-            }
-            return compareTo;
+
+            Choco other = obj as Choco;
+            if (other != null)
+                return this.ChocoNumber.CompareTo(other.ChocoNumber);
+            else
+                throw new ArgumentException("Object is not a Choco");
         }
     }
 }
