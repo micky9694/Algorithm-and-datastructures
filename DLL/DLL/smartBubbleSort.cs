@@ -28,16 +28,18 @@ namespace DLL
                 for (int inner = 0; inner < outer - 1; inner++)
                 {
                     //this will compare the objects
-                    if (array[inner].CompareTo(array[inner + 1]) > 0)
+                    if (array[inner] != null && array[inner + 1] != null)
                     {
-                        //this T will hold the object we are using to compare
-                        T Swap = array[inner];
-                        //this will change the place of the object that is being used to compare with the one that it is compared with
-                        array[inner] = array[inner + 1];
-                        //this will change the place of the object to the place of the object that we are using to compare it to
-                        array[inner + 1] = Swap;
+                        if (array[inner].CompareTo(array[inner + 1]) > 0)
+                        {
+                            //this T will hold the object we are using to compare
+                            T Swap = array[inner];
+                            //this will change the place of the object that is being used to compare with the one that it is compared with
+                            array[inner] = array[inner + 1];
+                            //this will change the place of the object to the place of the object that we are using to compare it to
+                            array[inner + 1] = Swap;
+                        }
                     }
-
                 }
             }
 

@@ -18,16 +18,30 @@ namespace DLL
             q.push(3);
             q.push(4);
             q.printStack();
-            Console.ReadKey();
-            Console.ReadKey();
-            Console.ReadKey();
-            Console.ReadKey();
-            Console.ReadKey();
-            Console.ReadKey();
-            Console.ReadKey();
-            Console.ReadKey();
-            Console.ReadKey();
-            Console.ReadKey();
+            Computer[] cs = new Computer[5];
+            cs[0] = new Computer(2, "Asus");
+            cs[1] = new Computer(10, "Asus");
+            cs[2] = new Computer(6, "Asus");
+            cs[3] = new Computer(1, "Asus");
+            cs[4] = new Computer(3, "Asus");
+            Choco[] c = new Choco[3];
+            c[0] = new Choco("Monica", 5);
+            c[1] = new Choco("Monica", 10);
+            c[2] = new Choco("Monica", 1);
+            Console.WriteLine();
+            SmartBubbleSort sbs = new SmartBubbleSort();
+            c = sbs.BubbleSorting(c);
+            for(int i = 0; i < 3; i++)
+            {
+                Console.Write(c[i].ChocoNumber+" ");
+            }
+            PriorityQueue<String> pq = new PriorityQueue<String>();
+            pq.add(10, "Last");
+            pq.add(1, "First");
+            pq.add(4, "Forth");
+            pq.add(3, "Third");
+            pq.add(2, "Second");
+            pq.printPriorityQueue();
             Console.ReadKey();
         }
     }
