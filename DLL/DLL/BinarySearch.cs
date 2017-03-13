@@ -71,18 +71,18 @@ namespace DLL
         /// <param name="start">Where the search starts</param>
         /// <param name="end">Where the search ends</param>
         /// <returns></returns>
-        private Boolean Search<T>(GArrayList<T> array, T element, double start, double end) where T : IComparable
+        private int Search<T>(GArrayList<T> array, T element, double start, double end) where T : IComparable
         {
             // If the starting point is bigger then the ending point or the ending point is smaller then the starting point
             // There is no element to be found
             if (start <= end)
             {
                 int m = (int)Math.Round((start + end) / 2); // Here is calculated the middle index of the array 
-                if (array[m].Equals(element)) //If the middle element of the array is the element that we are searching for then we found it
+                if (array.Get(m).Equals(element)) //If the middle element of the array is the element that we are searching for then we found it
                 {
-                    return true;
+                    return m;
                 }
-                else if (array[m].CompareTo(element) < 0) //If not then is checking if the element is on the right side of the array 
+                else if (array.Get(m).CompareTo(element) < 0) //If not then is checking if the element is on the right side of the array 
                 {
                     start = (double)(m + 1);
                     return Search(array, element, start, end); // splits the array in half and searches in the right part
@@ -95,7 +95,7 @@ namespace DLL
             }
             else // if there is no element found display
             {
-                return false;
+                return -1;
             }
 
         }
@@ -108,9 +108,9 @@ namespace DLL
         /// <param name="element">The element to be found</param>
         /// <returns></returns>
 
-        public Boolean binarySearch<T>(GArrayList<T> array, T element) where T : IComparable
+        public int binarySearch<T>(GArrayList<T> array, T element) where T : IComparable
         {
-            double size = array.Size - 1;
+            double size = (double) array.Size() - 1;
             return Search(array, element, 0, size);
         }
     }
