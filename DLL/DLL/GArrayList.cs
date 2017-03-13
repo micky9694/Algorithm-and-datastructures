@@ -126,7 +126,7 @@ namespace DLL
             return new Enumerator<T>(list);
         }
 
-        private int Size()
+        public int Size()
         {
             int count = 0;
             for (int i=0; i<list.Length; i++)
