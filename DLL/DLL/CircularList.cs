@@ -91,20 +91,23 @@ namespace DLL
         {
             SingularCircularNode<T> current = new SingularCircularNode<T>();
             current = m_header;
-            while (!(current.getNext().Equals(m_header)))
+            do
             {
                 current = current.getNext();
             }
+            while (!(current.getNext().Equals(m_header)));
+           
             return current;
         }
 
         private SingularCircularNode<T> FindPrevious(T Item)
         {
             SingularCircularNode<T> current = m_header;
-            while (!(current.getNext().Equals(null)) && (!current.getNext().getData().Equals(Item)))
+            do
             {
                 current = current.getNext();
             }
+            while (!(current.getNext() == m_header) && (!current.getNext().getData().Equals(Item)));
             return current;
         }
 
@@ -113,14 +116,12 @@ namespace DLL
             SingularCircularNode<T> current = new SingularCircularNode<T>();
             SingularCircularNode<T> newNode = new SingularCircularNode<T>(newItem);
 
-            while (!current.getNext().Equals(null))
+            while (!(current.getNext()==m_header))
             {
                 current = current.getNext();
             }
-
+        
             current.setNext(newNode);
-            newNode.setPrev(current);
-
         }
 
         public void Insert(T newItem, T after)
@@ -130,19 +131,15 @@ namespace DLL
 
             current = Find(after);
             newNode.setNext(current.getNext());
-            newNode.setPrev(current);
             current.setNext(newNode);
         }
 
         public void Remove(T Item)
         {
-            SingularCircularNode<T> p = Find(Item);
-            if (!(p.getNext().Equals(null)))
+            SingularCircularNode<T> p = FindPrevious(Item);
+            if (!(p.getNext() == m_header))
             {
-                p.getPrev().setNext(p.getNext());
-                p.getNext().setPrev(p.getPrev());
-                p.setNext(null);
-                p.setPrev(null);
+                p.setNext(p.getNext().getNext());
             }
         }
 
@@ -150,11 +147,12 @@ namespace DLL
         {
             SingularCircularNode<T> current = new SingularCircularNode<T>();
             current = m_header;
-            while (!(current.getNext().Equals(null)))
+            do
             {
                 Console.WriteLine(current.getNext().getData());
                 current.setNext(current.getNext());
             }
+            while (!(current.getNext().Equals(null)));
         }
 
     }
