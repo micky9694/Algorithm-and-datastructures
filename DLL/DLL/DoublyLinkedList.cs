@@ -99,7 +99,7 @@ namespace DLL
             return current;         
         }
 
-        public void addToEnd(T newItem)
+        public void AddToEnd(T newItem)
         {
             current = m_header;
             newNode = new DoubleLinkNode<T>(newItem);

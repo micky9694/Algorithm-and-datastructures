@@ -107,11 +107,11 @@ namespace DLL
             {
                 current = current.GetNext();
             }
-            while (!(current.GetNext() == m_header) && (!current.GetNext().getData().Equals(Item)));
+            while (!(current.GetNext() == m_header) && (!current.GetNext().GetData().Equals(Item)));
             return current;
         }
 
-        public void addToEnd(T newItem)
+        public void AddToEnd(T newItem)
         {
             SingularCircularNode<T> current = new SingularCircularNode<T>();
             SingularCircularNode<T> newNode = new SingularCircularNode<T>(newItem);
