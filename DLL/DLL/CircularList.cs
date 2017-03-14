@@ -48,6 +48,7 @@ namespace DLL
     {
         private SingularCircularNode<T> m_header;
         private SingularCircularNode<T> current;
+        private SingularCircularNode<T> newNode;
 
         public CircularList()
         {
@@ -74,9 +75,8 @@ namespace DLL
 
         private SingularCircularNode<T> Find(T Item)
         {
-            SingularCircularNode<T> current = new SingularCircularNode<T>();
             current = m_header;
-            while ((!current.GetData().Equals(Item)) && (!current.GetNext().Equals(null)))
+            while ((!current.GetData().Equals(Item)) && ((!(current.GetNext() ==null))))
             {
                 current = current.GetNext();
             }
@@ -89,20 +89,19 @@ namespace DLL
 
         private SingularCircularNode<T> FindLast()
         {
-            SingularCircularNode<T> current = new SingularCircularNode<T>();
             current = m_header;
             do
             {
                 current = current.GetNext();
             }
-            while (!(current.GetNext().Equals(m_header)));
+            while (!(current.GetNext() == m_header));
 
             return current;
         }
 
         private SingularCircularNode<T> FindPrevious(T Item)
         {
-            SingularCircularNode<T> current = m_header;
+            current = m_header;
             do
             {
                 current = current.GetNext();
@@ -113,25 +112,26 @@ namespace DLL
 
         public void AddToEnd(T newItem)
         {
-            SingularCircularNode<T> current = new SingularCircularNode<T>();
-            SingularCircularNode<T> newNode = new SingularCircularNode<T>(newItem);
+            current = m_header;
+            newNode = new SingularCircularNode<T>(newItem);
 
-            while (!(current.GetNext() == m_header))
+            do
             {
                 current = current.GetNext();
             }
-
+            while (!(current == m_header));
             current.SetNext(newNode);
+            newNode.SetNext(m_header);
         }
 
         public void Insert(T newItem, T after)
         {
-            SingularCircularNode<T> current = new SingularCircularNode<T>();
-            SingularCircularNode<T> newNode = new SingularCircularNode<T>(newItem);
+            newNode = new SingularCircularNode<T>(newItem);
 
             current = Find(after);
             newNode.SetNext(current.GetNext());
             current.SetNext(newNode);
+
         }
 
         public void Remove(T Item)
@@ -145,14 +145,13 @@ namespace DLL
 
         public void PrintList()
         {
-            SingularCircularNode<T> current = new SingularCircularNode<T>();
             current = m_header;
             do
             {
-                Console.WriteLine(current.GetNext().GetData());
-                current.SetNext(current.GetNext());
+                Console.WriteLine(current.GetData());
+                current = current.GetNext();
             }
-            while (!(current.GetNext().Equals(null)));
+            while (!(current == m_header));
         }
 
     }
