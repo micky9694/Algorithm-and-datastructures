@@ -23,22 +23,22 @@ namespace DLL
             Next = null;
         }
 
-        public SingularCircularNode<T> getNext()
+        public SingularCircularNode<T> GetNext()
         {
             return Next;
         }
 
-        public void setNext(SingularCircularNode<T> next)
+        public void SetNext(SingularCircularNode<T> next)
         {
             Next = next;
         }
 
-        public void addData(T Data)
+        public void AddData(T Data)
         {
             this.Data = Data;
         }
 
-        public T getData()
+        public T GetData()
         {
             return Data;
         }
@@ -48,39 +48,39 @@ namespace DLL
     {
         private SingularCircularNode<T> m_header;
         private SingularCircularNode<T> current;
+        private SingularCircularNode<T> newNode;
 
         public CircularList()
         {
             m_header = new SingularCircularNode<T>();
             current = null;
-            m_header.setNext(m_header);
+            m_header.SetNext(m_header);
         }
         public CircularList(T item)
         {
             m_header = new SingularCircularNode<T>(item);
             current = null;
-            m_header.setNext(m_header);
+            m_header.SetNext(m_header);
         }
 
         public bool IsEmpty()
         {
-            return (m_header.getNext().Equals(null));
+            return (m_header.GetNext().Equals(null));
         }
 
         public void MakeEmpty()
         {
-            m_header.setNext(null);
+            m_header.SetNext(null);
         }
 
         private SingularCircularNode<T> Find(T Item)
         {
-            SingularCircularNode<T> current = new SingularCircularNode<T>();
             current = m_header;
-            while ((!current.getData().Equals(Item)) && (!current.getNext().Equals(null)))
+            while ((!current.GetData().Equals(Item)) && ((!(current.GetNext() ==null))))
             {
-                current = current.getNext();
+                current = current.GetNext();
             }
-            if (!current.getData().Equals(Item))
+            if (!current.GetData().Equals(Item))
             {
                 current = null;
             }
@@ -89,72 +89,69 @@ namespace DLL
 
         private SingularCircularNode<T> FindLast()
         {
-            SingularCircularNode<T> current = new SingularCircularNode<T>();
             current = m_header;
-            while (!(current.getNext().Equals(m_header)))
+            do
             {
-                current = current.getNext();
+                current = current.GetNext();
             }
+            while (!(current.GetNext() == m_header));
+
             return current;
         }
 
         private SingularCircularNode<T> FindPrevious(T Item)
         {
-            SingularCircularNode<T> current = m_header;
-            while (!(current.getNext().Equals(null)) && (!current.getNext().getData().Equals(Item)))
+            current = m_header;
+            do
             {
-                current = current.getNext();
+                current = current.GetNext();
             }
+            while (!(current.GetNext() == m_header) && (!current.GetNext().GetData().Equals(Item)));
             return current;
         }
 
-        public void addToEnd(T newItem)
+        public void AddToEnd(T newItem)
         {
-            SingularCircularNode<T> current = new SingularCircularNode<T>();
-            SingularCircularNode<T> newNode = new SingularCircularNode<T>(newItem);
+            current = m_header;
+            newNode = new SingularCircularNode<T>(newItem);
 
-            while (!current.getNext().Equals(null))
+            do
             {
-                current = current.getNext();
+                current = current.GetNext();
             }
-
-            current.setNext(newNode);
-           // newNode.setPrev(current);
-
+            while (!(current == m_header));
+            current.SetNext(newNode);
+            newNode.SetNext(m_header);
         }
 
         public void Insert(T newItem, T after)
         {
-            SingularCircularNode<T> current = new SingularCircularNode<T>();
-            SingularCircularNode<T> newNode = new SingularCircularNode<T>(newItem);
+            newNode = new SingularCircularNode<T>(newItem);
 
             current = Find(after);
-            newNode.setNext(current.getNext());
-          //  newNode.setPrev(current);
-            current.setNext(newNode);
+            newNode.SetNext(current.GetNext());
+            current.SetNext(newNode);
+
         }
 
         public void Remove(T Item)
         {
-            SingularCircularNode<T> p = Find(Item);
-            if (!(p.getNext().Equals(null)))
+            SingularCircularNode<T> p = FindPrevious(Item);
+            if (!(p.GetNext() == m_header))
             {
-              /*  p.getPrev().setNext(p.getNext());
-                p.getNext().setPrev(p.getPrev());
-                p.setNext(null);
-                p.setPrev(null);*/
+                p.SetNext(p.GetNext().GetNext());
             }
         }
 
         public void PrintList()
         {
-            SingularCircularNode<T> current = new SingularCircularNode<T>();
             current = m_header;
-            while (!(current.getNext().Equals(null)))
+            do
             {
-                Console.WriteLine(current.getNext().getData());
-                current.setNext(current.getNext());
+                Console.WriteLine(current.GetData());
+                current = current.GetNext();
             }
+            while (!(current == m_header));
         }
 
     }

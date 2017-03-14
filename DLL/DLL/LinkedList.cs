@@ -84,7 +84,7 @@ namespace DLL
             return current;
         }
 
-        public void addToEnd(T newItem)
+        public void AddToEnd(T newItem)
         {
             Node<T> current = new Node<T>();
             current = m_header;
