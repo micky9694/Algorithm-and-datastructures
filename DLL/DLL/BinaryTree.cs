@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DLL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace DLL
 {
-    public class Parent<T>
+    public class BinaryTreeNode<T>
     {
-        private Parent<T> left;
-        private Parent<T> right;
-        private T node;
+        public BinaryTreeNode<T> Left;
+        public BinaryTreeNode<T> Right;
+        public T Node;
 
-        public Parent()
+        /*public Parent()
         {
             left = null;
             right = null;
@@ -57,57 +58,103 @@ namespace DLL
         public Parent<T> getChildRight()
         {
             return right;
+        } */
+        public void DisplayNode()
+        {
+            Console.Write(Node + " ");
         }
     }
 
     class BinaryTree<T> where T : IComparable
     {
-        private GArrayList<Parent<T>> tree;
+        private GArrayList<BinaryTreeNode<T>> tree;
+        private GArrayList<GArrayList<BinaryTreeNode<T>>> matrics;
         private int child;
         private int parentPos;
+        public BinaryTreeNode<T> root;
+        private BinaryTreeNode<T> current;
         public BinaryTree()
         {
-            tree = new GArrayList<Parent<T>>();
+            tree = new GArrayList<BinaryTreeNode<T>>();
+            matrics = new GArrayList<GArrayList<BinaryTreeNode<T>>>();
             child = 0;
             parentPos = 0;
+            root = null;
         }
 
-        public void AddParent(Parent<T> p)
+        public void Add(T data)
         {
-            if(tree.Size() == 0)
+            BinaryTreeNode<T> newN = new BinaryTreeNode<T>();
+            newN.Node = data;
+            BinaryTreeNode<T> current = root, parent = null;
+            while (current != null)
             {
-                tree.Add(p);
+                int result = current.Node.CompareTo(data);
+                if (result == 0)
+                    // they are equal - attempting to enter a duplicate - do nothing
+                    return;
+                else if (result > 0)
+                {
+                    // current.Value > data, must add n to current's left subtree
+                    parent = current;
+                    current = current.Left;
+                }
+                else if (result < 0)
+                {
+                    // current.Value < data, must add n to current's right subtree
+                    parent = current;
+                    current = current.Right;
+                }
             }
+
+            if (parent == null)
+                // the tree was empty, make n the root
+                root = newN;
             else
             {
-                if(child % 2 == 0 && child != 0)
-                {
-                    parentPos++;
-                    child = 0 ;
-                }
-
-                if (tree.Get(parentPos).Node != null)
-                {
-                    if (tree.Get(parentPos).getChildLeft() == null)
-                    {
-                        tree.Get(parentPos).setChildLeft(p);
-                        tree.Add(p);
-                        child++;
-                    }
-                    else
-                    {
-                        tree.Get(parentPos).setChildRight(p);
-                        tree.Add(p);
-                        child++;
-                    }
-                }
+                int result = parent.Node.CompareTo(data);
+                if (result > 0)
+                    // parent.Value > data, therefore n must be added to the left subtree
+                    parent.Left = newN;
+                else
+                    // parent.Value < data, therefore n must be added to the right subtree
+                    parent.Right = newN;
             }
-            //Console.WriteLine(parentPos);
         }
 
-        public Parent<T> getParent(int i)
+        private BinaryTreeNode<T> getParent(int i)
         {
             return tree.Get(i);
+        }
+
+        public void InOrder(BinaryTreeNode<T> theRoot)
+        {
+            if(theRoot != null)
+            {
+                InOrder(theRoot.Left);
+                theRoot.DisplayNode();
+                InOrder(theRoot.Right);
+            }
+        }
+
+        public void PreOrder(BinaryTreeNode<T> theRoot)
+        {
+            if(theRoot != null)
+            {
+                theRoot.DisplayNode();
+                PreOrder(theRoot.Left);
+                PreOrder(theRoot.Right);
+            }
+        }
+
+        public void PostOrder(BinaryTreeNode<T> theRoot)
+        {
+            if (theRoot != null)
+            {
+                PostOrder(theRoot.Left);
+                PostOrder(theRoot.Right);
+                theRoot.DisplayNode();
+            }
         }
     }
 }

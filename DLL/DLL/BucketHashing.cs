@@ -101,6 +101,7 @@ namespace DLL
 
         public int Hash(T s)
         {
+            int lenght = s.ToString().Length;
             return 0;
         }
   /*
