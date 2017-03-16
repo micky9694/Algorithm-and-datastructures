@@ -6,76 +6,52 @@ using System.Threading.Tasks;
 
 namespace DLL
 {
-    class DoubleLinkNode<T> where T : IComparable<T>
+    /// <summary>
+    /// Making use of the DoubleNode class for the nodes used in this linked list
+    /// all values will be linked to the next and the previous item in the list
+    /// </summary>
+    /// <typeparam name="T">Genreic data type being used</typeparam>
+    public class DoubleCircularList<T> where T : IComparable<T>
     {
-        private T Data;
-        private DoubleLinkNode<T> Next;
-        private DoubleLinkNode<T> Prev;
-
-        public DoubleLinkNode()
-        {
-            Data = default(T);
-            Next = null;
-            Prev = null;
-        }
-
-        public DoubleLinkNode(T Data)
-        {
-            this.Data = Data;
-            Next = null;
-            Prev = null;
-        }
-
-        public DoubleLinkNode<T> getNext()
-        {
-            return Next;
-        }
-
-        public void setNext(DoubleLinkNode<T> next)
-        {
-            Next = next;
-        }
-
-        public DoubleLinkNode<T> getPrev()
-        {
-            return Prev;
-        }
-
-        public void setPrev(DoubleLinkNode<T> Prev)
-        {
-            this.Prev = Prev;
-        }
-
-        public void addData(T Data)
-        {
-            this.Data = Data;
-        }
-
-        public T getData()
-        {
-            return Data;
-        }
-    }
-
-    public class DoublyLinkedList<T> where T : IComparable<T>
-    {
-        //Variables used during the rest of the doubly linked list
+        //Variable used in the double Circular list
         private DoubleNode<T> m_header;
         private DoubleNode<T> current;
         private DoubleNode<T> newNode;
 
         //Constructers
-        public DoublyLinkedList()
+        public DoubleCircularList()
         {
             m_header = new DoubleNode<T>();
             current = new DoubleNode<T>();
             newNode = new DoubleNode<T>();
+            m_header.SetNext(m_header);
+            m_header.SetPrev(m_header);
         }
-        public DoublyLinkedList(T item)
+        public DoubleCircularList(T item)
         {
             m_header = new DoubleNode<T>(item);
             current = new DoubleNode<T>();
             newNode = new DoubleNode<T>();
+            m_header.SetNext(m_header);
+            m_header.SetPrev(m_header);
+        }
+
+        /// <summary>
+        /// This method is used to check if the circularlist is empty of not
+        /// </summary>
+        /// <returns>Boolean value of true or false</returns>
+        public bool IsEmpty()
+        {
+            return ((m_header.GetNext() == null)&&(m_header.GetPrev() ==null));
+        }
+
+        /// <summary>
+        /// This method will make the circular listt completly emply
+        /// </summary>
+        public void MakeEmpty()
+        {
+            m_header.SetNext(m_header);
+            m_header.SetPrev(m_header);
         }
 
         /// <summary>
@@ -86,7 +62,7 @@ namespace DLL
         private DoubleNode<T> Find(T Item)
         {
             current = m_header;
-            while ((!(current.GetData().Equals(Item)) && (!(current.GetNext() == null))))
+            while ((!current.GetData().Equals(Item)) && (!(current.GetNext() == m_header)))
             {
                 current = current.GetNext();
             }
@@ -102,27 +78,50 @@ namespace DLL
         /// </summary>
         /// <returns>the found node</returns>
         private DoubleNode<T> FindLast()
-        { 
+        {
             current = m_header;
-            while (!(current.GetNext() == null))
+            do
             {
                 current = current.GetNext();
             }
-            return current;         
+            while (!(current.GetNext().Equals(m_header)));
+
+            return current;
         }
 
-        public void addToEnd(T newItem)
+        /// <summary>
+        /// Same concept as above Find except that it finds the previous node to the one in Item
+        /// </summary>
+        /// <param name="Item">Genreic field used in the search</param>
+        /// <returns>return node</returns>
+        private DoubleNode<T> FindPrevious(T Item)
+        {
+            current = m_header;
+            do
+            {
+                current = current.GetNext();
+            }
+            while (!(current.GetNext() == m_header) && (!current.GetNext().GetData().Equals(Item)));
+            return current;
+        }
+
+        /// <summary>
+        /// Method used to add node to end of the linked list
+        /// </summary>
+        /// <param name="newItem">The Item being added to the end of the linked list</param>
+        public void AddToEnd(T newItem)
         {
             current = m_header;
             newNode = new DoubleNode<T>(newItem);
 
-            while (!(current.GetNext() == null))
+            while (!(current.GetNext() == m_header))
             {
                 current = current.GetNext();
             }
-            
+
             current.SetNext(newNode);
             newNode.SetPrev(current);
+            newNode.SetNext(m_header);
         }
 
         /// <summary>
@@ -132,7 +131,8 @@ namespace DLL
         /// <param name="after">After this value the new Item will be added</param>
         public void Insert(T newItem, T after)
         {
-            newNode = new DoubleNode<T>(newItem);
+            DoubleNode<T> current = new DoubleNode<T>();
+            DoubleNode<T> newNode = new DoubleNode<T>(newItem);
 
             current = Find(after);
             newNode.SetNext(current.GetNext());
@@ -146,8 +146,8 @@ namespace DLL
         /// <param name="Item">Item to be removed</param>
         public void Remove(T Item)
         {
-            DoubleLinkNode<T> p = Find(Item);
-            if (!(current.getNext() == null))
+            DoubleNode<T> p = FindPrevious(Item);
+            if (!(p.GetNext() == m_header))
             {
                 p.GetPrev().SetNext(p.GetNext());
                 p.GetNext().SetPrev(p.GetPrev());
@@ -162,24 +162,12 @@ namespace DLL
         public void PrintList()
         {
             current = m_header;
-            while (!(current.GetNext() == null))
+            do
             {
-                Console.WriteLine(current.GetNext().GetData().ToString());
+                Console.WriteLine(current.GetData());
                 current = current.GetNext();
             }
-        }
-
-        /// <summary>
-        /// This is the same as above but instead prints the list in reverse
-        /// </summary>
-        public void PrintReverse()
-        {
-            current = FindLast();
-            while (!(current.GetPrev() == null))
-            {
-                Console.WriteLine(current.GetData().ToString());
-                current = current.GetPrev();
-            }
+            while (!(current == m_header));
         }
     }
 }

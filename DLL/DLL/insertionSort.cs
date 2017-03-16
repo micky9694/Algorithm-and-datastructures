@@ -44,5 +44,33 @@ namespace DLL
             //returns the array
             return array;
         }
+
+        public GArrayList<T> InsertionListSorting<T>(GArrayList<T> array) where T : IComparable
+        {
+            //this for loop runs the while loop as many time as there is objects in the array
+            for (int counter = 0; counter < array.Size() - 1; counter++)
+            {
+                //index so that we can compare the objects in the array
+                int index = counter + 1;
+                //the while loop so that we can compare the all objects in the array
+                while (index > 0)
+                {
+                    //this if compares the object in the array and changes the places if needed
+                    if (array.Get(index - 1).CompareTo(array.Get(index)) > 0)
+                    {
+                        //hold the object for the time
+                        T Swap = array.Get(index - 1);
+                        //changes the placeing of the object we use to compare
+                        array.Insert(index, array.Get(index + 1));
+                        //changes the place of the object with we put on hold just now
+                        array.Insert(index, Swap);
+                    }
+                    //lowers the index so this does not become an infinte loop
+                    index--;
+                }
+            }
+            //returns the array
+            return array;
+        }
     }
 }

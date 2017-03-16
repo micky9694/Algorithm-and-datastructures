@@ -31,6 +31,7 @@ namespace DLL
         private GArrayList<Slot<T>> hashTable;
         private Slot<T> element;
         private int size;
+        private BinarySearch bs = new BinarySearch();
 
         public HashTable()
         {
@@ -43,8 +44,16 @@ namespace DLL
             element = new Slot<T>();
             element.key = key;
             element.value = value;
-            hashTable.Add(element);
-            size++;
+
+            if (bs.binarySearch(hashTable, element) != -1)
+            {
+                hashTable.Add(element);
+                size++;
+            }
+            else
+            {
+                throw new Exception("The element already exists!");
+            }
         }
 
         public void Clear()
@@ -59,91 +68,61 @@ namespace DLL
             }
         }
 
-        public void ContainsKey()
+        public bool ContainsKey(Slot<T> element)
         {
+           return bs.binarySearch(hashTable, element) != -1;
+        }
 
+        public void Remove(T key)
+        {
+            element = new Slot<T>();
+            element.key = key;
+            int found = bs.binarySearch(hashTable, element);
+            if (found != -1)
+            {
+                hashTable.Remove(found);
+            }
         }
     }
-    class BucketHashing <T>
+
+    class BucketHashing<T>
     {
-        private const int size = 101;
-        //add arrayList 
-        ArrayList[] data;
+        private GArrayList<T> bucket;
+        private int size = 10;
 
         public BucketHashing()
         {
-            data = new ArrayList[size];
-            for (int i = 0; i<=size-1; i++)
+            bucket = new GArrayList<T>();
+            for(int i = 0; i < size; i++)
             {
-                data[i] = new ArrayList(4);
+               // bucket.Add(new GArrayList<T>());
             }
         }
 
-        public int Hash(String a)
+        public int Hash(T s)
         {
-            long tot = 0;
-            char[] charray;
-            charray = a.ToCharArray();
-            int length = a.Length;
-            for (int i = 0; i<= length-1;i++)
+            int lenght = s.ToString().Length;
+            return 0;
+        }
+  /*
+        public void Insert(T item)
+        {
+            int hash_Value;
+            hash_Value = Hash(item);
+            if(bucket.Contains(item))
             {
-                tot += 37 * tot + (int)charray[i];
+                bucket.Insert(hash_Value, item);
             }
-            tot = tot % data.GetUpperBound(0);
-            if(tot<0)
-            {
-                tot += data.GetUpperBound(0);
-            }
-            return (int)tot;
         }
 
-        public void Insert (String item)
+        public void Remove(T item)
         {
-            /*bool found = false;
-            int i = 0;
-            while ((i<size) && (found == false))
-            {
-                if(data[i].Equals(item))
-                {
-                    found = true;
-                }
-                i++;
-            }
-            if (found == true)
-            {
-                data[size] = item;
-            }
-            else
-            {
-                Console.Write("The item is already in the bucket.");
-            } */
             int hash_value;
-            hash_value = Hash(value);
-            
-        }
-
-        public void Remove (String item)
-        {
-            bool found = false;
-            int place = 0;
-            int i = 0;
-            while ((i<size)&&(found==false))
-                {
-                if (data[i].Equals(item))
-                {
-                    found = true;
-                    place = i;
-                }
-                i++;
-            }
-            if (found == true)
+            hash_value = Hash(item);
+            if(bucket.Contains(item))
             {
-                for (i = place; i<size; i++)
-                {
-                    data[place] = data[place + 1];
-                }
-                size -= 1;
+                bucket.Remove(hash_value);
             }
-        }
+        } */
     }
 }

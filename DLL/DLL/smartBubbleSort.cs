@@ -46,7 +46,5 @@ namespace DLL
             //returns the array
             return array;
         }
-
-
     }
 }

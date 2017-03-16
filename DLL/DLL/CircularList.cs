@@ -23,22 +23,22 @@ namespace DLL
             Next = null;
         }
 
-        public SingularCircularNode<T> GetNext()
+        public SingularCircularNode<T> getNext()
         {
             return Next;
         }
 
-        public void SetNext(SingularCircularNode<T> next)
+        public void setNext(SingularCircularNode<T> next)
         {
             Next = next;
         }
 
-        public void AddData(T Data)
+        public void addData(T Data)
         {
             this.Data = Data;
         }
 
-        public T GetData()
+        public T getData()
         {
             return Data;
         }
@@ -46,37 +46,51 @@ namespace DLL
 
     public class CircularList<T> where T : IComparable<T>
     {
-        private SingularCircularNode<T> m_header;
-        private SingularCircularNode<T> current;
+        //Variables used in this circular list
+        private SingularLinkNode<T> m_header;
+        private SingularLinkNode<T> current;
+        private SingularLinkNode<T> newNode;
 
+        //Constructers
         public CircularList()
         {
-            m_header = new SingularCircularNode<T>();
+            m_header = new SingularLinkNode<T>();
             current = null;
             m_header.SetNext(m_header);
         }
         public CircularList(T item)
         {
-            m_header = new SingularCircularNode<T>(item);
+            m_header = new SingularLinkNode<T>(item);
             current = null;
             m_header.SetNext(m_header);
         }
 
+        /// <summary>
+        /// This method is used to check if the circularlist is empty of not
+        /// </summary>
+        /// <returns>Boolean value of true or false</returns>
         public bool IsEmpty()
         {
             return (m_header.GetNext().Equals(null));
         }
 
+        /// <summary>
+        /// This method will make the circular listt completly emply
+        /// </summary>
         public void MakeEmpty()
         {
-            m_header.SetNext(null);
+            m_header.setNext(null);
         }
 
-        private SingularCircularNode<T> Find(T Item)
+        /// <summary>
+        /// This private method is used to run a search through the linked list to find an object specified in Item
+        /// </summary>
+        /// <param name="Item">Generic object that is searched for in the Linked list</param>
+        /// <returns>Generic node used in other methods</returns>
+        private SingularLinkNode<T> Find(T Item)
         {
-            SingularCircularNode<T> current = new SingularCircularNode<T>();
             current = m_header;
-            while ((!current.GetData().Equals(Item)) && (!current.GetNext().Equals(null)))
+            while ((!current.getData().Equals(Item)) && (!current.getNext().Equals(null)))
             {
                 current = current.GetNext();
             }
@@ -87,74 +101,93 @@ namespace DLL
             return current;
         }
 
-        private SingularCircularNode<T> FindLast()
+        /// <summary>
+        /// This method is used to find the last value in the doubly linked list
+        /// </summary>
+        /// <returns>the found node</returns>
+        private SingularLinkNode<T> FindLast()
         {
-            SingularCircularNode<T> current = new SingularCircularNode<T>();
             current = m_header;
-            while (!(current.GetNext().Equals(m_header)))
+            while (!(current.getNext().Equals(m_header)))
             {
                 current = current.GetNext();
             }
+            while (!(current.GetNext() == m_header));
+
             return current;
         }
 
-        private SingularCircularNode<T> FindPrevious(T Item)
+        /// <summary>
+        /// Same concept as above Find except that it finds the previous node to the one in Item
+        /// </summary>
+        /// <param name="Item">Genreic field used in the search</param>
+        /// <returns>return node</returns>
+        private SingularLinkNode<T> FindPrevious(T Item)
         {
             SingularCircularNode<T> current = m_header;
-            while (!(current.GetNext().Equals(null)) && (!current.GetNext().GetData().Equals(Item)))
+            while (!(current.getNext().Equals(null)) && (!current.getNext().getData().Equals(Item)))
             {
                 current = current.GetNext();
             }
+            while (!(current.GetNext() == m_header) && (!current.GetNext().GetData().Equals(Item)));
             return current;
         }
 
-        public void AddToEnd(T newItem)
+        public void addToEnd(T newItem)
         {
-            SingularCircularNode<T> current = new SingularCircularNode<T>();
-            SingularCircularNode<T> newNode = new SingularCircularNode<T>(newItem);
+            current = m_header;
+            newNode = new SingularLinkNode<T>(newItem);
 
-            while (!current.GetNext().Equals(null))
+            while (!current.getNext().Equals(null))
             {
                 current = current.GetNext();
             }
 
-            current.SetNext(newNode);
+            current.setNext(newNode);
            // newNode.setPrev(current);
 
         }
 
+        /// <summary>
+        /// Insert used to add an Item anywhere into the list after any given value
+        /// </summary>
+        /// <param name="newItem">New Item being added into the linked list</param>
+        /// <param name="after">After this value the new Item will be added</param>
         public void Insert(T newItem, T after)
         {
-            SingularCircularNode<T> current = new SingularCircularNode<T>();
-            SingularCircularNode<T> newNode = new SingularCircularNode<T>(newItem);
+            newNode = new SingularLinkNode<T>(newItem);
 
             current = Find(after);
-            newNode.SetNext(current.GetNext());
+            newNode.setNext(current.getNext());
           //  newNode.setPrev(current);
-            current.SetNext(newNode);
+            current.setNext(newNode);
         }
 
+        /// <summary>
+        /// This method will remove the given Item from the list and ajust all links
+        /// </summary>
+        /// <param name="Item">Item to be removed</param>
         public void Remove(T Item)
         {
             SingularCircularNode<T> p = Find(Item);
-            if (!(p.GetNext().Equals(null)))
+            if (!(p.getNext().Equals(null)))
             {
-              /*  p.getPrev().setNext(p.getNext());
-                p.getNext().setPrev(p.getPrev());
-                p.setNext(null);
-                p.setPrev(null);*/
+                p.SetNext(p.GetNext().GetNext());
             }
         }
 
+        /// <summary>
+        /// Print all data values in the linked list
+        /// </summary>
         public void PrintList()
         {
-            SingularCircularNode<T> current = new SingularCircularNode<T>();
             current = m_header;
-            while (!(current.GetNext().Equals(null)))
+            while (!(current.getNext().Equals(null)))
             {
-                Console.WriteLine(current.GetNext().GetData());
-                current.SetNext(current.GetNext());
+                Console.WriteLine(current.getNext().getData());
+                current.setNext(current.getNext());
             }
+            while (!(current == m_header));
         }
 
     }
