@@ -21,10 +21,10 @@ namespace DLL
         private void button1_Click(object sender, EventArgs e)
         {
             DoublyLinkedList<int> d = new DoublyLinkedList<int>();
-            d.addToEnd(1);
-            d.addToEnd(2);
-            d.addToEnd(3);
-            d.addToEnd(4);
+            d.AddToEnd(1);
+            d.AddToEnd(2);
+            d.AddToEnd(3);
+            d.AddToEnd(4);
             d.PrintList();
         }
     }

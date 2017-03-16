@@ -13,11 +13,11 @@ namespace DLL
         {
 
             Stack<int> q = new Stack<int>();
-            q.push(1);
-            q.push(2);
-            q.push(3);
-            q.push(4);
-            q.printStack();
+            q.Push(1);
+            q.Push(2);
+            q.Push(3);
+            q.Push(4);
+            q.PrintStack();
             Computer[] cs = new Computer[5];
             cs[0] = new Computer(2, "Asus");
             cs[1] = new Computer(10, "Asus");
@@ -36,12 +36,12 @@ namespace DLL
                 Console.Write(c[i].ChocoNumber+" ");
             }
             PriorityQueue<String> pq = new PriorityQueue<String>();
-            pq.add(10, "Last");
-            pq.add(1, "First");
-            pq.add(4, "Forth");
-            pq.add(3, "Third");
-            pq.add(2, "Second");
-            pq.printPriorityQueue();
+            pq.Add(10, "Last");
+            pq.Add(1, "First");
+            pq.Add(4, "Forth");
+            pq.Add(3, "Third");
+            pq.Add(2, "Second");
+            pq.PrintPriorityQueue();
             Console.ReadKey();
         }
     }

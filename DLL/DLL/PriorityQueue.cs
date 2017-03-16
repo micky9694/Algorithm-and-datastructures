@@ -45,23 +45,24 @@ namespace DLL {
         private static int size = 0;
         private GArrayList<Item<T>> priorityQueue;
         private Item<T> i;
-        private SmartBubbleSort bs = new SmartBubbleSort();
+        private SmartBubbleSort bubbleSort = new SmartBubbleSort();
         public PriorityQueue()
         {
             size = 0;
             priorityQueue = new GArrayList<Item<T>>();
         }
 
-        public void add(int priority, T element)
+        public void Add(int priority, T element)
         {
             i = new Item<T>();
             i.priority = priority;
             i.element = element;
             priorityQueue.Add(i);
+            bubbleSort.BubbleSorting(priorityQueue);
             size += 1;
         }
 
-        public Item<T> remove()
+        public Item<T> Remove()
         {
             Item<T> item = priorityQueue.Get(0);
             if (size > 0)
@@ -72,12 +73,12 @@ namespace DLL {
             return item;
         }
 
-        public int sizePriorityQueue()
+        public int SizePriorityQueue()
         {
             return size;
         }
 
-        public void printPriorityQueue()
+        public void PrintPriorityQueue()
         {
         Console.WriteLine("The priority queue is:");
             for (int i = 0; i < size; i++)

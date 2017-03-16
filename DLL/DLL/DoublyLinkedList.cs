@@ -26,32 +26,32 @@ namespace DLL
             Prev = null;
         }
 
-        public DoubleLinkNode<T> getNext()
+        public DoubleLinkNode<T> GetNext()
         {
             return Next;
         }
 
-        public void setNext(DoubleLinkNode<T> next)
+        public void SetNext(DoubleLinkNode<T> next)
         {
             Next = next;
         }
 
-        public DoubleLinkNode<T> getPrev()
+        public DoubleLinkNode<T> GetPrev()
         {
             return Prev;
         }
 
-        public void setPrev(DoubleLinkNode<T> Prev)
+        public void SetPrev(DoubleLinkNode<T> Prev)
         {
             this.Prev = Prev;
         }
 
-        public void addData(T Data)
+        public void AddData(T Data)
         {
             this.Data = Data;
         }
 
-        public T getData()
+        public T GetData()
         {
             return Data;
         }
@@ -78,11 +78,11 @@ namespace DLL
         private DoubleLinkNode<T> Find(T Item)
         {
             current = m_header;
-            while ((!(current.getData().Equals(Item)) && (!(current.getNext() == null))))
+            while ((!(current.GetData().Equals(Item)) && (!(current.GetNext() == null))))
             {
-                current = current.getNext();
+                current = current.GetNext();
             }
-            if (!current.getData().Equals(Item))
+            if (!current.GetData().Equals(Item))
             {
                 current = null;
             }
@@ -92,25 +92,25 @@ namespace DLL
         private DoubleLinkNode<T> FindLast()
         { 
             current = m_header;
-            while (!(current.getNext() == null))
+            while (!(current.GetNext() == null))
             {
-                current = current.getNext();
+                current = current.GetNext();
             }
             return current;         
         }
 
-        public void addToEnd(T newItem)
+        public void AddToEnd(T newItem)
         {
             current = m_header;
             newNode = new DoubleLinkNode<T>(newItem);
 
-            while (!(current.getNext() == null))
+            while (!(current.GetNext() == null))
             {
-                current = current.getNext();
+                current = current.GetNext();
             }
             
-            current.setNext(newNode);
-            newNode.setPrev(current);
+            current.SetNext(newNode);
+            newNode.SetPrev(current);
         }
 
         public void Insert(T newItem, T after)
@@ -118,40 +118,40 @@ namespace DLL
             newNode = new DoubleLinkNode<T>(newItem);
 
             current = Find(after);
-            newNode.setNext(current.getNext());
-            newNode.setPrev(current);
-            current.setNext(newNode);
+            newNode.SetNext(current.GetNext());
+            newNode.SetPrev(current);
+            current.SetNext(newNode);
         }
 
         public void Remove(T Item)
         {
             DoubleLinkNode<T> p = Find(Item);
-            if (!(current.getNext() == null))
+            if (!(current.GetNext() == null))
             {
-                p.getPrev().setNext(p.getNext());
-                p.getNext().setPrev(p.getPrev());
-                p.setNext(null);
-                p.setPrev(null);
+                p.GetPrev().SetNext(p.GetNext());
+                p.GetNext().SetPrev(p.GetPrev());
+                p.SetNext(null);
+                p.SetPrev(null);
             }
         }
 
         public void PrintList()
         {
             current = m_header;
-            while (!(current.getNext() == null))
+            while (!(current.GetNext() == null))
             {
-                Console.WriteLine(current.getNext().getData().ToString());
-                current = current.getNext();
+                Console.WriteLine(current.GetNext().GetData().ToString());
+                current = current.GetNext();
             }
         }
 
         public void PrintReverse()
         {
             current = FindLast();
-            while (!(current.getPrev() == null))
+            while (!(current.GetPrev() == null))
             {
-                Console.WriteLine(current.getData().ToString());
-                current = current.getPrev();
+                Console.WriteLine(current.GetData().ToString());
+                current = current.GetPrev();
             }
         }
     }

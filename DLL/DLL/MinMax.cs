@@ -17,7 +17,7 @@ namespace DLL
         /// <typeparam name="T"> Generic type </typeparam>
         /// <param name="array"> Array given by user/program </param>
         /// <returns> retunr min, returns max, returns min and max in array form </returns>
-        public T min<T>(T[] array) where T : IComparable
+        public T Min<T>(T[] array) where T : IComparable
         {
             T min = array[0]; // initializing the minim with the first element of the array
             int size = array.Length; // geting the size of the array
@@ -32,7 +32,7 @@ namespace DLL
             return min; // returns min 
         }
 
-        public T max<T>(T[] array) where T : IComparable
+        public T Max<T>(T[] array) where T : IComparable
         {
             T max = array[0]; //initializing the max of the array as the first element of the array
             int size = array.Length; // geting the size of the array
@@ -47,7 +47,7 @@ namespace DLL
             return max;
         }
 
-        public T[] minMax<T>(T[] array) where T : IComparable
+        public T[] Min_Max<T>(T[] array) where T : IComparable
         {
             T[] minMax = { array[0], array[0] }; //initalize the index 0 and 1 with the first element of the array
             int size = array.Length; // geting the size of the array

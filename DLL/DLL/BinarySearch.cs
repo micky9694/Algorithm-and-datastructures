@@ -55,7 +55,7 @@ namespace DLL
         /// <param name="element">The element to be found</param>
         /// <returns></returns>
 
-        public Boolean binarySearch<T>(T[] array, T element) where T : IComparable
+        public Boolean BinarySearch<T>(T[] array, T element) where T : IComparable
         {
             double size = array.Length - 1;
             return Search(array, element, 0, size);

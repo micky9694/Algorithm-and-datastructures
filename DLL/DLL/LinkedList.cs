@@ -23,22 +23,22 @@ namespace DLL
             Next = null;
         }
 
-        public Node<T> getNext()
+        public Node<T> GetNext()
         {
             return Next;
         }
 
-        public void setNext(Node<T> next)
+        public void SetNext(Node<T> next)
         {
             Next = next;
         }
 
-        public void addData(T Data)
+        public void AddData(T Data)
         {
             this.Data = Data;
         }
 
-        public T getData()
+        public T GetData()
         {
             return Data;
         }
@@ -63,11 +63,11 @@ namespace DLL
         private Node<T> Find(T Item)
         {
             current = m_header;
-            while((!current.getData().Equals(Item))&&(!(current.getNext() ==null)))
+            while((!current.GetData().Equals(Item))&&(!(current.GetNext() ==null)))
             {
-                current = current.getNext();
+                current = current.GetNext();
             }
-            if(!current.getData().Equals(Item))
+            if(!current.GetData().Equals(Item))
             {
                 current = null;
             }
@@ -77,25 +77,25 @@ namespace DLL
         private Node<T> FindPrevious(T Item)
         {
             Node<T> current = m_header;
-            while((!(current.getNext() == null))&&(!current.getNext().getData().Equals(Item)))
+            while((!(current.GetNext() == null))&&(!current.GetNext().GetData().Equals(Item)))
             {
-                current = current.getNext();
+                current = current.GetNext();
             }
             return current;
         }
 
-        public void addToEnd(T newItem)
+        public void AddToEnd(T newItem)
         {
             Node<T> current = new Node<T>();
             current = m_header;
             Node<T> newNode = new Node<T>(newItem);
             
-            while(!(current.getNext() == null))
+            while(!(current.GetNext() == null))
             {
-                current = current.getNext();
+                current = current.GetNext();
             }
 
-            current.setNext(newNode);
+            current.SetNext(newNode);
         }
 
         public void Insert(T newItem, T after)
@@ -104,16 +104,16 @@ namespace DLL
             Node<T> newNode = new Node<T>(newItem);
 
             current = Find(after);
-            newNode.setNext(current.getNext());
-            current.setNext(newNode);
+            newNode.SetNext(current.GetNext());
+            current.SetNext(newNode);
         }
 
         public void Remove(T Item)
         {
             Node <T> p = FindPrevious(Item);
-            if(!(p.getNext() == null))
+            if(!(p.GetNext() == null))
             {
-                p.setNext(p.getNext().getNext());
+                p.SetNext(p.GetNext().GetNext());
             }
         }
 
@@ -121,10 +121,10 @@ namespace DLL
         {
             Node<T> current = new Node<T>();
             current = m_header;
-            while(!(current.getNext() == null))
+            while(!(current.GetNext() == null))
             {
-                Console.WriteLine(current.getNext().getData());
-                current =current.getNext();
+                Console.WriteLine(current.GetNext().GetData());
+                current =current.GetNext();
             }
         }
     }
