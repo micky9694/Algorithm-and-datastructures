@@ -15,8 +15,6 @@ namespace DLL
             
            ExcelFile ef = new ExcelFile();
             Console.ReadKey();
-            
-            GArrayList<>
         }
     }
 }
