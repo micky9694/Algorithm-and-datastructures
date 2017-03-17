@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace DLL
 {
+    /// <summary>
+    /// Making use of the DoubleNode class for the nodes used in this linked list
+    /// all values will be linked to the next and the previous item in the list
+    /// </summary>
+    /// <typeparam name="T">Genreic data type being used</typeparam>
     public class DoublyLinkedList<T> where T : IComparable<T>
     {
         //Variables used during the rest of the doubly linked list
@@ -51,18 +56,19 @@ namespace DLL
         /// </summary>
         /// <returns>the found node</returns>
         private DoubleNode<T> FindLast()
-        { 
+        {
             current = m_header;
             while (!(current.GetNext() == null))
             {
                 current = current.GetNext();
             }
-            return current;         
+            return current;
         }
+
         /// <summary>
-        /// Add an item to the end of the linked list
+        /// Method used to add node to end of the linked list
         /// </summary>
-        /// <param name="newItem"></param>
+        /// <param name="newItem">The Item being added to the end of the linked list</param>
         public void AddToEnd(T newItem)
         {
             current = m_header;
@@ -72,7 +78,7 @@ namespace DLL
             {
                 current = current.GetNext();
             }
-            
+
             current.SetNext(newNode);
             newNode.SetPrev(current);
         }

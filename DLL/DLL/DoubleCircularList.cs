@@ -114,10 +114,11 @@ namespace DLL
             current = m_header;
             newNode = new DoubleNode<T>(newItem);
 
-            while (!(current.GetNext() == m_header))
+            do
             {
                 current = current.GetNext();
             }
+            while (!(current.GetNext() == m_header));
 
             current.SetNext(newNode);
             newNode.SetPrev(current);
