@@ -86,5 +86,18 @@ namespace DLL {
                 Console.Write(priorityQueue.Get(i));
             }
         }
+
+        public void Clear()
+        {
+            for (int i=0; i<size; i++)
+            {
+                priorityQueue.Remove(i);
+            }
+        }
+
+        public Item<T> Peek()
+        {
+            return priorityQueue.Get(0);
+        }
     }
 }

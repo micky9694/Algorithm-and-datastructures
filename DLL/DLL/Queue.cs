@@ -52,6 +52,17 @@ namespace DLL
             }
         }
 
+        public void Clear()
+        {
+            for (int i=0; i<size; i++)
+            {
+                queue.Remove(i);
+            }
+        }
 
+        public T Peek()
+        {
+            return queue.Get(0);
+        }
     }
 }
