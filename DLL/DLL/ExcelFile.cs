@@ -17,6 +17,7 @@ namespace DLL
 
         public ExcelFile()
         {
+            Console.WriteLine("I'm doing something!");
             //Start Excel and get Application object
             app = new Microsoft.Office.Interop.Excel.Application();
             app.Visible = true;
@@ -34,18 +35,18 @@ namespace DLL
             workSheet.Range["A1", "B1"].VerticalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
 
             //Create an array to multiple values at once
-            string[,] className = new string[10,1];
-            className[0,0] = "Smart Bubble Sort";
-            className[0, 1] = "Bubble Sort";
+            string[,] className = new string[10, 1];
+            className[0, 0] = "Smart Bubble Sort";
+            className[1, 0] = "Bubble Sort";
 
-            string[,] timeSpent = new string[10,2];
-            timeSpent[1, 0] = "BubbleSortTime";
+            string[,] timeSpent = new string[10,1];
+            timeSpent[0, 0] = "0.12";
 
             //Fill with the name of the class name
             workSheet.Range["A2", "A10"].Value2 = className;
 
             //Fill with the time specific for all the classes
-            workSheet.Range["B2", "B10"].Value2=timeSpent;
+            workSheet.Range["B2", "B10"].Value2= timeSpent;
 
             //AutoFit columns A and B
             range = workSheet.Range["A1", "B1"];
@@ -53,7 +54,14 @@ namespace DLL
 
             app.Visible = false;
             app.UserControl = false;
-            workBook.SaveAs("C:\\ExcelData.xls");
+            try
+            {
+                workBook.SaveAs("C:\\Users\\codru\\Desktop\\ExcelData.xls");
+            }
+            catch (Exception)
+            {
+
+            }
             workBook.Close();
         }
 
