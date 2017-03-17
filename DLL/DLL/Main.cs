@@ -21,10 +21,11 @@ namespace DLL
             Console.WriteLine();
             SmartBubbleSort sbs = new SmartBubbleSort();
             conList = sbs.BubbleSorting(conList);
-            for(int i = 0; i < 5; i++)
+            for(int i = 0; i < conList.Size(); i++)
             {
-                Console.Write(conList.Get(i)+" ");
+                Console.Write(conList.Get(i).ConsoleName+" ");
             }
+            Console.ReadKey();
             
         }
     }

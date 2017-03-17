@@ -56,6 +56,19 @@ namespace DLL
             }
         }
 
+        public object Replace(int position, T value)
+        {
+            try
+            {
+                list[position] = value;
+                return true;
+            }
+            catch (Exception e)
+            {
+                return e;
+            }
+        }
+
         public object Remove(int position)
         {
             try
