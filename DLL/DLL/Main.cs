@@ -27,6 +27,7 @@ namespace DLL
             }
             Console.ReadKey();
             
+            GArrayList<>
         }
     }
 }

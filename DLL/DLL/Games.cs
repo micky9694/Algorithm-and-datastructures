@@ -41,11 +41,11 @@ namespace DLL
                 return 1;
             }
 
-            Consoles other = obj as Consoles;
+            Games other = obj as Games;
             if (other != null)
-                return this.consoleName.CompareTo(other.consoleName);
+                return this.price.CompareTo(other.price);
             else
-                throw new ArgumentException("Object is not a Console");
+                throw new ArgumentException("Object is not a Game");
         }
     }
 }
