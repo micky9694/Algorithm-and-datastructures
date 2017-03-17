@@ -43,6 +43,7 @@
     <Compile Include="BinarySearch.cs" />
     <Compile Include="CircularList.cs" />
     <Compile Include="DoublyLinkedList.cs" />
+    <Compile Include="LinearHashTable.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="MinMax.cs" />
     <Compile Include="PriorityQueue.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Queue.cs" />
     <Compile Include="SequentialSearch.cs" />
     <Compile Include="Stack.cs" />
+    <Compile Include="Student.cs" />
     <Compile Include="TimeMeasurement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
