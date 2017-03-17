@@ -74,9 +74,9 @@ namespace DLL
                             //this T will hold the object we are using to compare
                             T Swap = array.Get(inner);
                             //this will change the place of the object that is being used to compare with the one that it is compared with
-                            array.Insert(inner, array.Get(inner + 1));
+                            array.Replace(inner, array.Get(inner + 1));
                             //this will change the place of the object to the place of the object that we are using to compare it to
-                            array.Insert(inner + 1, Swap);
+                            array.Replace(inner + 1, Swap);
                         }
                     }
                 }

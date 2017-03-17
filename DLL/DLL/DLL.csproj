@@ -58,6 +58,7 @@
     <Compile Include="DoublyLinkedList.cs" />
     <Compile Include="ExcelFile.cs" />
     <Compile Include="insertionSort.cs" />
+    <Compile Include="LinearHashTable.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="Main Form.cs">
       <SubType>Form</SubType>
@@ -75,6 +76,7 @@
     <Compile Include="SingularLinkNode.cs" />
     <Compile Include="smartBubbleSort.cs" />
     <Compile Include="Stack.cs" />
+    <Compile Include="Student.cs" />
     <Compile Include="TimeMeasurement.cs" />
   </ItemGroup>
   <ItemGroup>
