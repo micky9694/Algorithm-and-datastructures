@@ -7,40 +7,6 @@ using System.Threading.Tasks;
 namespace DLL
 {
 
-        public Node()
-        {
-            Data = default(T);
-            Next = null;
-        }
-
-        public Node(T Data)
-        {
-            this.Data = Data;
-            Next = null;
-        }
-
-        public Node<T> getNext()
-        {
-            return Next;
-        }
-
-        public void setNext(Node<T> next)
-        {
-            Next = next;
-        }
-
-        public void addData(T Data)
-        {
-            this.Data = Data;
-        }
-
-        public T getData()
-        {
-            return Data;
-        }
-    }
-
-
     public class LinkedList<T> where T:IComparable<T>
     {
         //Variables used throughout the linked list document
@@ -86,8 +52,8 @@ namespace DLL
         /// <returns>return node</returns>
         private SingularLinkNode<T> FindPrevious(T Item)
         {
-            Node<T> current = m_header;
-            while((!(current.getNext() == null))&&(!current.getNext().getData().Equals(Item)))
+            SingularLinkNode<T> current = m_header;
+            while((!(current.GetNext() == null))&&(!current.GetNext().GetData().Equals(Item)))
             {
                 current = current.GetNext();
             }
@@ -127,8 +93,8 @@ namespace DLL
         /// <param name="Item">Item to be removed</param>
         public void Remove(T Item)
         {
-            Node <T> p = FindPrevious(Item);
-            if(!(p.getNext() == null))
+            SingularLinkNode <T> p = FindPrevious(Item);
+            if(!(p.GetNext() == null))
             {
                 p.SetNext(p.GetNext().GetNext());
             }

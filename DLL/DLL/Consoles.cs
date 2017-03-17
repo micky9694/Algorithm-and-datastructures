@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DLL
 {
-    class Consoles
+    class Consoles:IComparable
     {
         //Variables
         private String consoleName;

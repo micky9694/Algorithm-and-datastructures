@@ -6,57 +6,6 @@ using System.Threading.Tasks;
 
 namespace DLL
 {
-    class DoubleLinkNode<T> where T : IComparable<T>
-    {
-        private T Data;
-        private DoubleLinkNode<T> Next;
-        private DoubleLinkNode<T> Prev;
-
-        public DoubleLinkNode()
-        {
-            Data = default(T);
-            Next = null;
-            Prev = null;
-        }
-
-        public DoubleLinkNode(T Data)
-        {
-            this.Data = Data;
-            Next = null;
-            Prev = null;
-        }
-
-        public DoubleLinkNode<T> getNext()
-        {
-            return Next;
-        }
-
-        public void setNext(DoubleLinkNode<T> next)
-        {
-            Next = next;
-        }
-
-        public DoubleLinkNode<T> getPrev()
-        {
-            return Prev;
-        }
-
-        public void setPrev(DoubleLinkNode<T> Prev)
-        {
-            this.Prev = Prev;
-        }
-
-        public void addData(T Data)
-        {
-            this.Data = Data;
-        }
-
-        public T getData()
-        {
-            return Data;
-        }
-    }
-
     public class DoublyLinkedList<T> where T : IComparable<T>
     {
         //Variables used during the rest of the doubly linked list
@@ -146,8 +95,8 @@ namespace DLL
         /// <param name="Item">Item to be removed</param>
         public void Remove(T Item)
         {
-            DoubleLinkNode<T> p = Find(Item);
-            if (!(current.getNext() == null))
+            DoubleNode<T> p = Find(Item);
+            if (!(current.GetNext() == null))
             {
                 p.GetPrev().SetNext(p.GetNext());
                 p.GetNext().SetPrev(p.GetPrev());
