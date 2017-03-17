@@ -6,122 +6,110 @@ using System.Threading.Tasks;
 
 namespace DLL
 {
-    class Node<T> where T : IComparable<T>
-    {
-        private T Data;
-        private Node<T> Next;
-
-        public Node()
-        {
-            Data = default(T);
-            Next = null;
-        }
-
-        public Node(T Data)
-        {
-            this.Data = Data;
-            Next = null;
-        }
-
-        public Node<T> getNext()
-        {
-            return Next;
-        }
-
-        public void setNext(Node<T> next)
-        {
-            Next = next;
-        }
-
-        public void addData(T Data)
-        {
-            this.Data = Data;
-        }
-
-        public T getData()
-        {
-            return Data;
-        }
-    }
-
 
     public class LinkedList<T> where T:IComparable<T>
     {
-        private Node<T> m_header;
+        //Variables used throughout the linked list document
+        private SingularLinkNode<T> m_header;
+        private SingularLinkNode<T> current;
+
+        //Constructers start
         public LinkedList()
         {
-            m_header = new Node<T>();
+            m_header = new SingularLinkNode<T>();
+            current = new SingularLinkNode<T>();
         }
         public LinkedList(T item)
         {
-            m_header = new Node<T>(item);
+            m_header = new SingularLinkNode<T>(item);
+            current = new SingularLinkNode<T>();
         }
+        //Constructers end
 
-        private Node<T> Find(T Item)
+        /// <summary>
+        /// This private method is used to run a search through the linked list to find an object specified in Item
+        /// </summary>
+        /// <param name="Item">Generic object that is searched for in the Linked list</param>
+        /// <returns>Generic node used in other methods</returns>
+        private SingularLinkNode<T> Find(T Item)
         {
-            Node<T> current = new Node<T>();
             current = m_header;
-            while((!current.getData().Equals(Item))&&(!current.getNext().Equals(null)))
+            while((!current.GetData().Equals(Item))&&(!(current.GetNext() ==null)))
             {
-                current = current.getNext();
+                current = current.GetNext();
             }
-            if(!current.getData().Equals(Item))
+            if(!current.GetData().Equals(Item))
             {
                 current = null;
             }
             return current;
         }
 
-        private Node<T> FindPrevious(T Item)
+        /// <summary>
+        /// Same concept as above Find except that it finds the previous node to the one in Item
+        /// </summary>
+        /// <param name="Item">Genreic field used in the search</param>
+        /// <returns>return node</returns>
+        private SingularLinkNode<T> FindPrevious(T Item)
         {
-            Node<T> current = m_header;
-            while(!(current.getNext().Equals(null))&&(!current.getNext().getData().Equals(Item)))
+            SingularLinkNode<T> current = m_header;
+            while((!(current.GetNext() == null))&&(!current.GetNext().GetData().Equals(Item)))
             {
-                current = current.getNext();
+                current = current.GetNext();
             }
             return current;
         }
 
         public void addToEnd(T newItem)
         {
-            Node<T> current = new Node<T>();
-            Node<T> newNode = new Node<T>(newItem);
+            current = m_header;
+            SingularLinkNode<T> newNode = new SingularLinkNode<T>(newItem);
             
-            while(!current.getNext().Equals(null))
+            while(!(current.GetNext() == null))
             {
-                current = current.getNext();
+                current = current.GetNext();
             }
 
-            current.setNext(newNode);
+            current.SetNext(newNode);
         }
 
+        /// <summary>
+        /// Insert used to add an Item anywhere into the list after any given value
+        /// </summary>
+        /// <param name="newItem">New Item being added into the linked list</param>
+        /// <param name="after">After this value the new Item will be added</param>
         public void Insert(T newItem, T after)
         {
-            Node<T> current = new Node<T>();
-            Node<T> newNode = new Node<T>(newItem);
+            SingularLinkNode<T> newNode = new SingularLinkNode<T>(newItem);
 
             current = Find(after);
-            newNode.setNext(current.getNext());
-            current.setNext(newNode);
+            newNode.SetNext(current.GetNext());
+            current.SetNext(newNode);
         }
 
+        /// <summary>
+        /// This method will remove the given Item from the list and ajust all links
+        /// </summary>
+        /// <param name="Item">Item to be removed</param>
         public void Remove(T Item)
         {
-            Node <T> p = FindPrevious(Item);
-            if(!(p.getNext().Equals(null)))
+            SingularLinkNode <T> p = FindPrevious(Item);
+            if(!(p.GetNext() == null))
             {
-                p.setNext(p.getNext().getNext());
+                p.SetNext(p.GetNext().GetNext());
             }
         }
 
+        /// <summary>
+        /// Print all data values in the linked list
+        /// </summary>
         public void PrintList()
         {
-            Node<T> current = new Node<T>();
             current = m_header;
-            while(!(current.getNext().Equals(null)))
+            while(!(current.GetNext() == null))
             {
-                Console.WriteLine(current.getNext().getData());
-                current.setNext(current.getNext());
+                Console.WriteLine(current.GetNext().GetData());
+                current =current.GetNext();
             }
         }
     }

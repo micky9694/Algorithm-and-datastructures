@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C8B642BA-FACA-4E99-933C-4395E17F8842}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DLL</RootNamespace>
     <AssemblyName>DLL</AssemblyName>
@@ -29,9 +29,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,19 +46,40 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinarySearch.cs" />
+    <Compile Include="BinaryTree.cs" />
+    <Compile Include="bubbleSort.cs" />
+    <Compile Include="BucketHashing.cs" />
+    <Compile Include="Choco.cs" />
     <Compile Include="CircularList.cs" />
+    <Compile Include="Computers.cs" />
+    <Compile Include="Consoles.cs" />
+    <Compile Include="DoubleCircularList.cs" />
+    <Compile Include="DoubleNode.cs" />
     <Compile Include="DoublyLinkedList.cs" />
-    <Compile Include="LinearHashTable.cs" />
     <Compile Include="LinkedList.cs" />
+    <Compile Include="Main Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main Form.Designer.cs">
+      <DependentUpon>Main Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs" />
     <Compile Include="MinMax.cs" />
     <Compile Include="PriorityQueue.cs" />
     <Compile Include="GArrayList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queue.cs" />
     <Compile Include="SequentialSearch.cs" />
+    <Compile Include="SingularLinkNode.cs" />
+    <Compile Include="smartBubbleSort.cs" />
     <Compile Include="Stack.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="TimeMeasurement.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Main Form.resx">
+      <DependentUpon>Main Form.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

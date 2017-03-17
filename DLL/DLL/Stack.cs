@@ -9,27 +9,28 @@ namespace DLL
     class Stack<T>
     {
         //Declaring the necessary variables
-        private T[] stack;
+        private GArrayList<T> stack;
         private int size;
         public Stack()
         {
+            stack = new GArrayList<T>();
             size = 0;
-            stack = new T[size];
         }
 
         //Adding a new element on the top of the stack
-        public void push(T element)
+        public void Push(T element)
         {
-            stack[size] = element;
+            stack.Add(element);
             size += 1;
         }
 
         //Removing the top element of the stack
-        public T pop()
+        public T Pop()
         {
-            T element = stack[size];
+            T element = stack.Get(size-1);
             if (size > 0)
             {
+                stack.Remove(size - 1);
                 size -= 1;
             }
             else
@@ -40,9 +41,32 @@ namespace DLL
         }
 
         //Finding out the size of the stack
-        public int sizeStack()
+        public int SizeStack()
         {
             return size;
+        }
+
+        //Printing the stack
+        public void PrintStack()
+        {
+            Console.WriteLine("The stack is:");
+            for (int i = size - 1; i >= 0; i--)
+            {
+                Console.Write(stack.Get(i));
+            }
+        }
+
+        public void Clear()
+        {
+            for (int i=size-1; i>=0; i--)
+            {
+                stack.Remove(i);
+            }
+        }
+
+        public T Peek()
+        {
+            return stack.Get(size-1);
         }
     }
 }

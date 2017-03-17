@@ -6,25 +6,34 @@ using System.Threading.Tasks;
 
 namespace DLL
 {
-    public class CircularList<T> where T : IComparable<T>
+    /// <summary>
+    /// Making use of the DoubleNode class for the nodes used in this linked list
+    /// all values will be linked to the next and the previous item in the list
+    /// </summary>
+    /// <typeparam name="T">Genreic data type being used</typeparam>
+    public class DoubleCircularList<T> where T : IComparable<T>
     {
-        //Variables used in this circular list
-        private SingularLinkNode<T> m_header;
-        private SingularLinkNode<T> current;
-        private SingularLinkNode<T> newNode;
+        //Variable used in the double Circular list
+        private DoubleNode<T> m_header;
+        private DoubleNode<T> current;
+        private DoubleNode<T> newNode;
 
         //Constructers
-        public CircularList()
+        public DoubleCircularList()
         {
-            m_header = new SingularLinkNode<T>();
-            current = null;
+            m_header = new DoubleNode<T>();
+            current = new DoubleNode<T>();
+            newNode = new DoubleNode<T>();
             m_header.SetNext(m_header);
+            m_header.SetPrev(m_header);
         }
-        public CircularList(T item)
+        public DoubleCircularList(T item)
         {
-            m_header = new SingularLinkNode<T>(item);
-            current = null;
+            m_header = new DoubleNode<T>(item);
+            current = new DoubleNode<T>();
+            newNode = new DoubleNode<T>();
             m_header.SetNext(m_header);
+            m_header.SetPrev(m_header);
         }
 
         /// <summary>
@@ -33,7 +42,7 @@ namespace DLL
         /// <returns>Boolean value of true or false</returns>
         public bool IsEmpty()
         {
-            return (m_header.GetNext().Equals(null));
+            return ((m_header.GetNext() == null)&&(m_header.GetPrev() ==null));
         }
 
         /// <summary>
@@ -41,7 +50,8 @@ namespace DLL
         /// </summary>
         public void MakeEmpty()
         {
-            m_header.SetNext(null);
+            m_header.SetNext(m_header);
+            m_header.SetPrev(m_header);
         }
 
         /// <summary>
@@ -49,10 +59,10 @@ namespace DLL
         /// </summary>
         /// <param name="Item">Generic object that is searched for in the Linked list</param>
         /// <returns>Generic node used in other methods</returns>
-        private SingularLinkNode<T> Find(T Item)
+        private DoubleNode<T> Find(T Item)
         {
             current = m_header;
-            while ((!current.GetData().Equals(Item)) && (!current.GetNext().Equals(null)))
+            while ((!current.GetData().Equals(Item)) && (!(current.GetNext() == m_header)))
             {
                 current = current.GetNext();
             }
@@ -67,14 +77,14 @@ namespace DLL
         /// This method is used to find the last value in the doubly linked list
         /// </summary>
         /// <returns>the found node</returns>
-        private SingularLinkNode<T> FindLast()
+        private DoubleNode<T> FindLast()
         {
             current = m_header;
-            while (!(current.GetNext().Equals(m_header)))
+            do
             {
                 current = current.GetNext();
             }
-            while (!(current.GetNext() == m_header));
+            while (!(current.GetNext().Equals(m_header)));
 
             return current;
         }
@@ -84,10 +94,10 @@ namespace DLL
         /// </summary>
         /// <param name="Item">Genreic field used in the search</param>
         /// <returns>return node</returns>
-        private SingularLinkNode<T> FindPrevious(T Item)
+        private DoubleNode<T> FindPrevious(T Item)
         {
-            SingularLinkNode<T> current = m_header;
-            while (!(current.GetNext().Equals(null)) && (!current.GetNext().GetData().Equals(Item)))
+            current = m_header;
+            do
             {
                 current = current.GetNext();
             }
@@ -95,19 +105,23 @@ namespace DLL
             return current;
         }
 
-        public void addToEnd(T newItem)
+        /// <summary>
+        /// Method used to add node to end of the linked list
+        /// </summary>
+        /// <param name="newItem">The Item being added to the end of the linked list</param>
+        public void AddToEnd(T newItem)
         {
             current = m_header;
-            newNode = new SingularLinkNode<T>(newItem);
+            newNode = new DoubleNode<T>(newItem);
 
-            while (!current.GetNext().Equals(null))
+            while (!(current.GetNext() == m_header))
             {
                 current = current.GetNext();
             }
 
             current.SetNext(newNode);
-           // newNode.setPrev(current);
-
+            newNode.SetPrev(current);
+            newNode.SetNext(m_header);
         }
 
         /// <summary>
@@ -117,11 +131,12 @@ namespace DLL
         /// <param name="after">After this value the new Item will be added</param>
         public void Insert(T newItem, T after)
         {
-            newNode = new SingularLinkNode<T>(newItem);
+            DoubleNode<T> current = new DoubleNode<T>();
+            DoubleNode<T> newNode = new DoubleNode<T>(newItem);
 
             current = Find(after);
             newNode.SetNext(current.GetNext());
-          //  newNode.setPrev(current);
+            newNode.SetPrev(current);
             current.SetNext(newNode);
         }
 
@@ -131,10 +146,13 @@ namespace DLL
         /// <param name="Item">Item to be removed</param>
         public void Remove(T Item)
         {
-            SingularLinkNode<T> p = Find(Item);
-            if (!(p.GetNext().Equals(null)))
+            DoubleNode<T> p = FindPrevious(Item);
+            if (!(p.GetNext() == m_header))
             {
-                p.SetNext(p.GetNext().GetNext());
+                p.GetPrev().SetNext(p.GetNext());
+                p.GetNext().SetPrev(p.GetPrev());
+                p.SetNext(null);
+                p.SetPrev(null);
             }
         }
 
@@ -144,13 +162,12 @@ namespace DLL
         public void PrintList()
         {
             current = m_header;
-            while (!(current.GetNext().Equals(null)))
+            do
             {
-                Console.WriteLine(current.GetNext().GetData());
-                current.SetNext(current.GetNext());
+                Console.WriteLine(current.GetData());
+                current = current.GetNext();
             }
             while (!(current == m_header));
         }
-
     }
 }
