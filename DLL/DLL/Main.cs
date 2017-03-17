@@ -26,6 +26,8 @@ namespace DLL
                 Console.Write(conList.Get(i).ConsoleName+" ");
             }
             Console.ReadKey();
+
+            ExcelFile xf = new ExcelFile();
             
         }
     }
