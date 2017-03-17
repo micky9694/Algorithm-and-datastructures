@@ -5,11 +5,45 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DLL
-{   
-        /// <summary>
-    /// Generic list of any given data type
-    /// </summary>
-    /// <typeparam name="T">Given data type that will be used in this circular list</typeparam>
+{
+    class SingularCircularNode<T> where T : IComparable<T>
+    {
+        private T Data;
+        private SingularCircularNode<T> Next;
+
+        public SingularCircularNode()
+        {
+            Data = default(T);
+            Next = null;
+        }
+
+        public SingularCircularNode(T Data)
+        {
+            this.Data = Data;
+            Next = null;
+        }
+
+        public SingularCircularNode<T> getNext()
+        {
+            return Next;
+        }
+
+        public void setNext(SingularCircularNode<T> next)
+        {
+            Next = next;
+        }
+
+        public void addData(T Data)
+        {
+            this.Data = Data;
+        }
+
+        public T getData()
+        {
+            return Data;
+        }
+    }
+
     public class CircularList<T> where T : IComparable<T>
     {
         //Variables used in this circular list
@@ -45,8 +79,7 @@ namespace DLL
         /// </summary>
         public void MakeEmpty()
         {
-            m_header.SetNext(null);
-            m_header.SetNext(m_header);
+            m_header.setNext(null);
         }
 
         /// <summary>
@@ -57,7 +90,7 @@ namespace DLL
         private SingularLinkNode<T> Find(T Item)
         {
             current = m_header;
-            while ((!current.GetData().Equals(Item)) && ((!(current.GetNext() ==null))))
+            while ((!current.getData().Equals(Item)) && (!current.getNext().Equals(null)))
             {
                 current = current.GetNext();
             }
@@ -75,7 +108,7 @@ namespace DLL
         private SingularLinkNode<T> FindLast()
         {
             current = m_header;
-            do
+            while (!(current.getNext().Equals(m_header)))
             {
                 current = current.GetNext();
             }
@@ -91,8 +124,8 @@ namespace DLL
         /// <returns>return node</returns>
         private SingularLinkNode<T> FindPrevious(T Item)
         {
-            current = m_header;
-            do
+            SingularCircularNode<T> current = m_header;
+            while (!(current.getNext().Equals(null)) && (!current.getNext().getData().Equals(Item)))
             {
                 current = current.GetNext();
             }
@@ -100,22 +133,19 @@ namespace DLL
             return current;
         }
 
-        /// <summary>
-        /// Method used to add node to end of the linked list
-        /// </summary>
-        /// <param name="newItem">The Item being added to the end of the linked list</param>
-        public void AddToEnd(T newItem)
+        public void addToEnd(T newItem)
         {
             current = m_header;
             newNode = new SingularLinkNode<T>(newItem);
 
-            do
+            while (!current.getNext().Equals(null))
             {
                 current = current.GetNext();
             }
-            while (!(current == m_header));
-            current.SetNext(newNode);
-            newNode.SetNext(m_header);
+
+            current.setNext(newNode);
+           // newNode.setPrev(current);
+
         }
 
         /// <summary>
@@ -128,9 +158,9 @@ namespace DLL
             newNode = new SingularLinkNode<T>(newItem);
 
             current = Find(after);
-            newNode.SetNext(current.GetNext());
-            current.SetNext(newNode);
-
+            newNode.setNext(current.getNext());
+          //  newNode.setPrev(current);
+            current.setNext(newNode);
         }
 
         /// <summary>
@@ -139,8 +169,8 @@ namespace DLL
         /// <param name="Item">Item to be removed</param>
         public void Remove(T Item)
         {
-            SingularLinkNode<T> p = FindPrevious(Item);
-            if (!(p.GetNext() == m_header))
+            SingularCircularNode<T> p = Find(Item);
+            if (!(p.getNext().Equals(null)))
             {
                 p.SetNext(p.GetNext().GetNext());
             }
@@ -152,10 +182,10 @@ namespace DLL
         public void PrintList()
         {
             current = m_header;
-            do
+            while (!(current.getNext().Equals(null)))
             {
-                Console.WriteLine(current.GetData());
-                current = current.GetNext();
+                Console.WriteLine(current.getNext().getData());
+                current.setNext(current.getNext());
             }
             while (!(current == m_header));
         }

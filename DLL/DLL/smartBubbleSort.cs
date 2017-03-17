@@ -47,7 +47,16 @@ namespace DLL
             return array;
         }
 
-        public GArrayList<T> BubbleListSorting<T>(GArrayList<T> array) where T : IComparable
+        /// <summary>
+        /// this is doing a smart bubble sort which will sort an array by comparing 
+        /// the element by element sorting them until there is nothing to be sort
+        /// but everytime when it's done with inner loop 
+        /// it will make the array shorter by 1 
+        /// </summary>
+        /// <typeparam name="T">gerneric type</typeparam>
+        /// <param name="array">an array</param>
+        /// <returns>the sorted array</returns>
+        public GArrayList<T> BubbleSorting<T>(GArrayList<T> array) where T : IComparable
         {
             //gets the length of the array
             int Length = array.Size();

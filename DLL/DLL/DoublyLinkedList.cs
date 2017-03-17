@@ -6,11 +6,57 @@ using System.Threading.Tasks;
 
 namespace DLL
 {
-    /// <summary>
-    /// Making use of the DoubleNode class for the nodes used in this linked list
-    /// all values will be linked to the next and the previous item in the list
-    /// </summary>
-    /// <typeparam name="T">Genreic data type being used</typeparam>
+    class DoubleLinkNode<T> where T : IComparable<T>
+    {
+        private T Data;
+        private DoubleLinkNode<T> Next;
+        private DoubleLinkNode<T> Prev;
+
+        public DoubleLinkNode()
+        {
+            Data = default(T);
+            Next = null;
+            Prev = null;
+        }
+
+        public DoubleLinkNode(T Data)
+        {
+            this.Data = Data;
+            Next = null;
+            Prev = null;
+        }
+
+        public DoubleLinkNode<T> getNext()
+        {
+            return Next;
+        }
+
+        public void setNext(DoubleLinkNode<T> next)
+        {
+            Next = next;
+        }
+
+        public DoubleLinkNode<T> getPrev()
+        {
+            return Prev;
+        }
+
+        public void setPrev(DoubleLinkNode<T> Prev)
+        {
+            this.Prev = Prev;
+        }
+
+        public void addData(T Data)
+        {
+            this.Data = Data;
+        }
+
+        public T getData()
+        {
+            return Data;
+        }
+    }
+
     public class DoublyLinkedList<T> where T : IComparable<T>
     {
         //Variables used during the rest of the doubly linked list
@@ -65,11 +111,7 @@ namespace DLL
             return current;         
         }
 
-        /// <summary>
-        /// Method used to add node to end of the linked list
-        /// </summary>
-        /// <param name="newItem">The Item being added to the end of the linked list</param>
-        public void AddToEnd(T newItem)
+        public void addToEnd(T newItem)
         {
             current = m_header;
             newNode = new DoubleNode<T>(newItem);
@@ -104,8 +146,8 @@ namespace DLL
         /// <param name="Item">Item to be removed</param>
         public void Remove(T Item)
         {
-            DoubleNode<T> p = Find(Item);
-            if (!(current.GetNext() == null))
+            DoubleLinkNode<T> p = Find(Item);
+            if (!(current.getNext() == null))
             {
                 p.GetPrev().SetNext(p.GetNext());
                 p.GetNext().SetPrev(p.GetPrev());

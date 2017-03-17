@@ -16,7 +16,7 @@ namespace DLL
         /// <param name="array"> Array given by user/program</param>
         /// <param name="element"> The element to be found</param>
         /// <returns></returns>
-        public Boolean sequentialSearch<T>(T[] array, T element) where T : IComparable
+        public Boolean SequentialSearch<T>(T[] array, T element) where T : IComparable
         {
             Boolean sw = true; // switch to stop the loop from running 
             int size = array.Length;  // geting the size of the array

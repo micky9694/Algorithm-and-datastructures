@@ -49,7 +49,7 @@ namespace DLL
         }
 
         // Get the elapsed time between the start and the stop function in nanoseconds
-        public double getElapsedTime()
+        public double GetElapsedTime()
         {
             //return ((TimeSpan)(dtEndTime - dtStartTime)).TotalMilliseconds;
             return (((double)(stop - start) * (double)multiplier) / (double)frequency);

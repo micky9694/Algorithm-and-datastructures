@@ -7,10 +7,40 @@ using System.Threading.Tasks;
 namespace DLL
 {
 
-    /// <summary>
-    /// This class is the actual linked list where nodes are added in as the user wishes.
-    /// </summary>
-    /// <typeparam name="T">Genreic field</typeparam>
+        public Node()
+        {
+            Data = default(T);
+            Next = null;
+        }
+
+        public Node(T Data)
+        {
+            this.Data = Data;
+            Next = null;
+        }
+
+        public Node<T> getNext()
+        {
+            return Next;
+        }
+
+        public void setNext(Node<T> next)
+        {
+            Next = next;
+        }
+
+        public void addData(T Data)
+        {
+            this.Data = Data;
+        }
+
+        public T getData()
+        {
+            return Data;
+        }
+    }
+
+
     public class LinkedList<T> where T:IComparable<T>
     {
         //Variables used throughout the linked list document
@@ -38,11 +68,11 @@ namespace DLL
         private SingularLinkNode<T> Find(T Item)
         {
             current = m_header;
-            while((!current.getData().Equals(Item))&&(!(current.getNext() ==null)))
+            while((!current.GetData().Equals(Item))&&(!(current.GetNext() ==null)))
             {
-                current = current.getNext();
+                current = current.GetNext();
             }
-            if(!current.getData().Equals(Item))
+            if(!current.GetData().Equals(Item))
             {
                 current = null;
             }
@@ -56,28 +86,25 @@ namespace DLL
         /// <returns>return node</returns>
         private SingularLinkNode<T> FindPrevious(T Item)
         {
-            current = m_header;
+            Node<T> current = m_header;
             while((!(current.getNext() == null))&&(!current.getNext().getData().Equals(Item)))
             {
-                current = current.getNext();
+                current = current.GetNext();
             }
             return current;
         }
-        /// <summary>
-        /// Method used to add node to end of the linked list
-        /// </summary>
-        /// <param name="newItem">The Item being added to the end of the linked list</param>
-        public void AddToEnd(T newItem)
+
+        public void addToEnd(T newItem)
         {
             current = m_header;
             SingularLinkNode<T> newNode = new SingularLinkNode<T>(newItem);
             
-            while(!(current.getNext() == null))
+            while(!(current.GetNext() == null))
             {
-                current = current.getNext();
+                current = current.GetNext();
             }
 
-            current.setNext(newNode);
+            current.SetNext(newNode);
         }
 
         /// <summary>
@@ -90,8 +117,8 @@ namespace DLL
             SingularLinkNode<T> newNode = new SingularLinkNode<T>(newItem);
 
             current = Find(after);
-            newNode.setNext(current.getNext());
-            current.setNext(newNode);
+            newNode.SetNext(current.GetNext());
+            current.SetNext(newNode);
         }
 
         /// <summary>
@@ -100,10 +127,10 @@ namespace DLL
         /// <param name="Item">Item to be removed</param>
         public void Remove(T Item)
         {
-            SingularLinkNode<T> p = FindPrevious(Item);
+            Node <T> p = FindPrevious(Item);
             if(!(p.getNext() == null))
             {
-                p.setNext(p.getNext().getNext());
+                p.SetNext(p.GetNext().GetNext());
             }
         }
 
@@ -113,10 +140,10 @@ namespace DLL
         public void PrintList()
         {
             current = m_header;
-            while(!(current.getNext() == null))
+            while(!(current.GetNext() == null))
             {
-                Console.WriteLine(current.getNext().getData());
-                current =current.getNext();
+                Console.WriteLine(current.GetNext().GetData());
+                current =current.GetNext();
             }
         }
     }

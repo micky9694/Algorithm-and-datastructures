@@ -18,14 +18,14 @@ namespace DLL
         }
 
         //Adding a new element to the end of queue
-        public void add(T element)
+        public void Add(T element)
         {
             queue.Add(element);
             size++;
         }
 
         //Removing the first element of the queue
-        public T remove()
+        public T Remove()
         {
             T element = queue.Get(0);
             if (size > 0)
@@ -37,13 +37,13 @@ namespace DLL
         }
 
         //Finding out the size of the queue
-        public int sizeQueue()
+        public int SizeQueue()
         {
             return size;
         }
 
         //Printing the queue
-        public void printQueue()
+        public void PrintQueue()
         {
             Console.WriteLine("The queue is:");
             for (int i = 0; i < size; i++)
@@ -51,5 +51,7 @@ namespace DLL
                 Console.Write(queue.Get(i));
             }
         }
+
+
     }
 }

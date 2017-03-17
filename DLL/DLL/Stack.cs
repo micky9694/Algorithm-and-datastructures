@@ -18,14 +18,14 @@ namespace DLL
         }
 
         //Adding a new element on the top of the stack
-        public void push(T element)
+        public void Push(T element)
         {
             stack.Add(element);
             size += 1;
         }
 
         //Removing the top element of the stack
-        public T pop()
+        public T Pop()
         {
             T element = stack.Get(size-1);
             if (size > 0)
@@ -41,19 +41,32 @@ namespace DLL
         }
 
         //Finding out the size of the stack
-        public int sizeStack()
+        public int SizeStack()
         {
             return size;
         }
 
         //Printing the stack
-        public void printStack()
+        public void PrintStack()
         {
             Console.WriteLine("The stack is:");
             for (int i = size - 1; i >= 0; i--)
             {
                 Console.Write(stack.Get(i));
             }
+        }
+
+        public void Clear()
+        {
+            for (int i=size-1; i>=0; i--)
+            {
+                stack.Remove(i);
+            }
+        }
+
+        public T Peek()
+        {
+            return stack.Get(size-1);
         }
     }
 }
