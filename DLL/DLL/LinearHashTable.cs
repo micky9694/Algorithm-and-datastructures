@@ -182,48 +182,5 @@ namespace DLL
         }
     }
 
-    class Enumerator<T> : IEnumerator
-    {
-        public T[] list;
-        int position = -1;
-
-        public Enumerator(T[] items)
-        {
-            list = items;
-        }
-
-        public bool MoveNext()
-        {
-            position++;
-            return (position < list.Length);
-        }
-
-        public void Reset()
-        {
-            position = -1;
-        }
-
-        object IEnumerator.Current
-        {
-            get
-            {
-                return Current;
-            }
-        }
-
-        public T Current
-        {
-            get
-            {
-                try
-                {
-                    return list[position];
-                }
-                catch (IndexOutOfRangeException)
-                {
-                    throw new InvalidOperationException();
-                }
-            }
-        }
-    }
+   
 }
