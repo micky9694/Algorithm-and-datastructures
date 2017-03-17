@@ -69,7 +69,7 @@ namespace DLL
 
             Consoles other = obj as Consoles;
             if (other != null)
-                return this.consoleName.CompareTo(other.consoleName);
+                return this.price.CompareTo(other.price);
             else
                 throw new ArgumentException("Object is not a Console");
         }
