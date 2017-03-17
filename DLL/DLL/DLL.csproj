@@ -57,6 +57,7 @@
     <Compile Include="DoubleNode.cs" />
     <Compile Include="DoublyLinkedList.cs" />
     <Compile Include="insertionSort.cs" />
+    <Compile Include="LinearHashTable.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="Main Form.cs">
       <SubType>Form</SubType>

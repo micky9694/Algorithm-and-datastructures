@@ -6,7 +6,7 @@ using System.Reflection;
 namespace LinearHashTable
 {
     public class LinearHashTable<T> : IEnumerable
-    {   
+    {
         private T[] list;
         private int percentageBorder;
 
@@ -227,4 +227,3 @@ namespace LinearHashTable
         }
     }
 }
-
