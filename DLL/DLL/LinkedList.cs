@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 namespace DLL
 {
 
-    public class LinkedList<T> where T:IComparable<T>
+    /// <summary>
+    /// This class is the actual linked list where nodes are added in as the user wishes.
+    /// </summary>
+    /// <typeparam name="T">Genreic field</typeparam>
+    public class LinkedList<T> where T : IComparable<T>
     {
         //Variables used throughout the linked list document
         private SingularLinkNode<T> m_header;
@@ -34,11 +38,11 @@ namespace DLL
         private SingularLinkNode<T> Find(T Item)
         {
             current = m_header;
-            while((!current.GetData().Equals(Item))&&(!(current.GetNext() ==null)))
+            while ((!current.GetData().Equals(Item)) && (!(current.GetNext() == null)))
             {
                 current = current.GetNext();
             }
-            if(!current.GetData().Equals(Item))
+            if (!current.GetData().Equals(Item))
             {
                 current = null;
             }
@@ -52,20 +56,23 @@ namespace DLL
         /// <returns>return node</returns>
         private SingularLinkNode<T> FindPrevious(T Item)
         {
-            SingularLinkNode<T> current = m_header;
-            while((!(current.GetNext() == null))&&(!current.GetNext().GetData().Equals(Item)))
+            current = m_header;
+            while ((!(current.GetNext() == null)) && (!current.GetNext().GetData().Equals(Item)))
             {
                 current = current.GetNext();
             }
             return current;
         }
-
-        public void addToEnd(T newItem)
+        /// <summary>
+        /// Method used to add node to end of the linked list
+        /// </summary>
+        /// <param name="newItem">The Item being added to the end of the linked list</param>
+        public void AddToEnd(T newItem)
         {
             current = m_header;
             SingularLinkNode<T> newNode = new SingularLinkNode<T>(newItem);
-            
-            while(!(current.GetNext() == null))
+
+            while (!(current.GetNext() == null))
             {
                 current = current.GetNext();
             }
@@ -93,8 +100,8 @@ namespace DLL
         /// <param name="Item">Item to be removed</param>
         public void Remove(T Item)
         {
-            SingularLinkNode <T> p = FindPrevious(Item);
-            if(!(p.GetNext() == null))
+            SingularLinkNode<T> p = FindPrevious(Item);
+            if (!(p.GetNext() == null))
             {
                 p.SetNext(p.GetNext().GetNext());
             }
@@ -106,10 +113,10 @@ namespace DLL
         public void PrintList()
         {
             current = m_header;
-            while(!(current.GetNext() == null))
+            while (!(current.GetNext() == null))
             {
                 Console.WriteLine(current.GetNext().GetData());
-                current =current.GetNext();
+                current = current.GetNext();
             }
         }
     }
