@@ -56,7 +56,6 @@
     <Compile Include="DoubleCircularList.cs" />
     <Compile Include="DoubleNode.cs" />
     <Compile Include="DoublyLinkedList.cs" />
-    <Compile Include="insertionSort.cs" />
     <Compile Include="LinkedList.cs" />
     <Compile Include="Main Form.cs">
       <SubType>Form</SubType>
@@ -74,6 +73,7 @@
     <Compile Include="SingularLinkNode.cs" />
     <Compile Include="smartBubbleSort.cs" />
     <Compile Include="Stack.cs" />
+    <Compile Include="Student.cs" />
     <Compile Include="TimeMeasurement.cs" />
   </ItemGroup>
   <ItemGroup>
