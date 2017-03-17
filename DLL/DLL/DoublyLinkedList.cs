@@ -59,8 +59,11 @@ namespace DLL
             }
             return current;         
         }
-
-        public void addToEnd(T newItem)
+        /// <summary>
+        /// Add an item to the end of the linked list
+        /// </summary>
+        /// <param name="newItem"></param>
+        public void AddToEnd(T newItem)
         {
             current = m_header;
             newNode = new DoubleNode<T>(newItem);
