@@ -52,6 +52,7 @@
     <Compile Include="Choco.cs" />
     <Compile Include="CircularList.cs" />
     <Compile Include="Computers.cs" />
+    <Compile Include="Consoles.cs" />
     <Compile Include="DoubleCircularList.cs" />
     <Compile Include="DoubleNode.cs" />
     <Compile Include="DoublyLinkedList.cs" />
