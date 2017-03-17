@@ -33,6 +33,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel1">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio 14.0\Visual Studio Tools for Office\PIA\Office14\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -56,7 +60,7 @@
     <Compile Include="DoubleCircularList.cs" />
     <Compile Include="DoubleNode.cs" />
     <Compile Include="DoublyLinkedList.cs" />
-    <Compile Include="ExcelFile.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="insertionSort.cs" />
     <Compile Include="LinearHashTable.cs" />
     <Compile Include="LinkedList.cs" />
